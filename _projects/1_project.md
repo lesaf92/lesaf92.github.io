@@ -33,4 +33,3 @@ This project was a fantastic exercise in combining backend logic with a user-foc
 
 **You can try the live application here:** [**cifraclub.lesaf.cc**](https://cifraclub.lesaf.cc)
 ---
-{% endraw %}
