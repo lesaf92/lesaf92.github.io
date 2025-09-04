@@ -2,16 +2,17 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Address. Contacts. Motto. Etc.
+subtitle: PhD candidate at <a href='http://www.ita.br/'>ITA</a>.
 
 profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
   more_info: >
-    <p>555 your office number</p>
-    <p>123 your address street</p>
-    <p>Your City, State 12345</p>
+    <p>Praça Marechal Eduardo Gomes, 50
+    <p>Instituto Tecnológico de Aeronáutica</p>
+    <p>Sala 1218</p>
+    <p>SJC, SP, Brazil</p>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -29,7 +30,7 @@ latest_posts:
 
 Welcome!  
 I am Luiz Eugênio, an engineer and researcher focused on **robotics**, **autonomous systems**, and **applied artificial intelligence**.  
-This website serves as a central hub for my **research projects**, **publications**, and **open-source software repositories**.
+This website serves as a central hub for my **research projects**, **publications**, and **open-source software repositories**. Most of the content is written in english, but since I am **Brazilian**, some sections may appear in portuguese as well.
 
 My primary research interests include:
 

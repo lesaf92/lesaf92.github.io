@@ -7,9 +7,9 @@ first_name: Luiz
 middle_name: Eugenio S.
 last_name: Araujo Filho
 contact_note: >
-  You can even add a little note about which of these is the best way to reach you.
+  <a href='https://en.wikipedia.org/wiki/Publilius_Syrus'><em>“In nil sapiendo vita iucundissima est”</em></a>. — Publilius Syrus, fl. 85-43 BC.
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+  Theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
@@ -263,8 +263,8 @@ display_categories: ["external-services"] # these categories will be displayed o
 # -----------------------------------------------------------------------------
 
 scholar:
-  last_name: [Einstein]
-  first_name: [Albert, A.]
+  last_name: [Santos Araujo Filho]
+  first_name: [Luiz Eugenio]
 
   style: apa
   locale: en
