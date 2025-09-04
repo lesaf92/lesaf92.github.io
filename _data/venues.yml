@@ -13,3 +13,15 @@
 
 "Conference":
   color: "#00369f"
+
+"BookChapter":
+  color: "#808000"
+
+"TCC":
+  color: "#00b7ba"
+
+"Dissertation":
+  color: "#00b7ba"
+
+"Thesis":
+  color: "#00b7ba"
