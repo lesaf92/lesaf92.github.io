@@ -1,14 +1,10 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - lesaf92
 
 repo_description_lines_max: 2
 
 github_repos:
-  - alshedivat/al-folio
-  - jekyll/jekyll
-  - twbs/bootstrap
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - mathjax/MathJax
-  - jpswalsh/academicons
+  - lesaf92/cc_for_dummies
+  - lesaf92/esp32_ros_companion
+  - lesaf92/sensor_calib
+  - lesaf92/ros_noetic_ubuntu22
