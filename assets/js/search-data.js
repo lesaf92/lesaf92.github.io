@@ -65,7 +65,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-a-post-with-plotly-js",
+            },{id: "post-graphslam-formulation",
+        
+          title: "GraphSLAM Formulation",
+        
+        description: "mathematical formulation for graph-based SLAM",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/graphslam-formulation/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
