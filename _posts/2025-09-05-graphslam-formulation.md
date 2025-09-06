@@ -43,7 +43,7 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 \end{align}
 
 where 
-$$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$$ 
+$$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right|_{\Delta \xk = \mathbf{0}}$$ 
 is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as: 
 
 \begin{align}
@@ -164,6 +164,10 @@ Dynamic Covariance Scaling (DCS) takes a different approach by introducing an ad
 s &= \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
 \end{align}  
 
-where $$\mathbf{e}_{\text{lc}}$$ is the loop closure constraint, $$\Omega_{\text{lc}}$$ is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
+where 
+$$\mathbf{e}_{\text{lc}}$$ 
+is the loop closure constraint, 
+$$\Omega_{\text{lc}}$$ 
+is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
 
 Other robust functions such as the Cauchy, Tukey, and Welsh kernels also exist, each offering a different non-convex strategy for down-weighting outliers. The choice of kernel is ultimately a trade-off between the desired level of robustness to extreme outliers and the stability of the optimization process. While non-convex kernels can offer better performance in the presence of severe outliers, convex options such as Huber are often preferred for their reliability and predictable behavior. Experiments show that robust kernels dramatically improve accuracy when initial estimates are poor or when data contains incorrect constraints {% cite lin2021analysis %}.
