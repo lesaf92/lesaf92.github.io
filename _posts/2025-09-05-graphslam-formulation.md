@@ -8,10 +8,7 @@ categories: work english
 featured: true
 related_publications: true
 giscus_comments: true
-tikzjax: true
 thumbnail: assets/img/robust_cost_graph.png
-images:
-  photoswipe: true
 ---
 $$
 \newcommand\x{\mathbf{x}}
@@ -98,44 +95,13 @@ To mitigate this, the error function can be wrapped in a robust cost function, o
 
 The g2o framework provides several robust kernels, with the Huber kernel being one of the most common. The Huber function is quadratic for small errors but becomes linear for large errors. This means it penalizes outliers less severely than a standard quadratic function, preventing them from corrupting the entire optimization. A key advantage of the Huber kernel is that it remains convex, which means it does not introduce new local minima into the optimization problem, ensuring more stable convergence.
 
-This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Figure below.
+This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in the figure below:
 
-<div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started">
-  <a href="../assets/img/robust_cost_graph.png"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="../assets/img/robust_cost_graph.png" alt="" />
-  </a>
+<div class="row mt-3">
+  <div class="col-sm mt-3 mt-md-0">
+      {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+  </div>
 </div>
-
-<script type="text/tikz">
-\begin{tikzpicture}
-\draw[->] (-4.5,0) -- (4.5,0) node[right] {Residual ($x$)};
-\draw[->] (0,-0.2) -- (0,5.5) node[right] {Cost $\rho(x)$};
-\foreach \x in {-4,-3,-2,-1,1,2,3,4}
-\draw (\x,0) -- (\x,-0.15) node[below] {\x};
-\foreach \y in {1,2,3,4,5}
-\draw (0,\y) -- (-0.15,\y) node[left] {\y};
-\node[font=\large] at (0,6.8) {Robust Kernel Functions};
-\draw[blue, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.375*\x*\x}) node[right] {};
-\draw[orange, thick, domain=-4:4, samples=100, variable=\x] plot ({\x},{abs(\x)});
-\draw[green!50!black, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.5*\x*\x/(1+\x*\x)});
-\draw[red, thick, domain=-1:1, samples=50, smooth, variable=\x] plot ({\x},{0.5*\x*\x});
-\draw[red, thick, domain=1:4, samples=2, variable=\x] plot ({\x},{\x-0.5});
-\draw[red, thick, domain=-4:-1, samples=2, variable=\x] plot ({\x},{-\x-0.5});
-\draw[purple, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.5*ln(1+\x*\x)});
-\draw[brown, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.9*(1-exp(-0.5*\x*\x))});
-\begin{scope}[shift={(4.5,5.5)}]
-  \draw[blue, thick] (0,0) -- (0.5,0) node[right, black] {L2};
-  \draw[orange, thick] (0,-0.5) -- (0.5,-0.5) node[right, black] {L1};
-  \draw[green!50!black, thick] (0,-1.0) -- (0.5,-1.0) node[right, black] {Geman-McClure};
-  \draw[red, thick] (0,-1.5) -- (0.5,-1.5) node[right, black] {Huber};
-  \draw[purple, thick] (0,-2.0) -- (0.5,-2.0) node[right, black] {Cauchy};
-  \draw[brown, thick] (0,-2.5) -- (0.5,-2.5) node[right, black] {DCS};
-\end{scope}
-\end{tikzpicture}
-</script>
 
 The Huber kernel is one of the most widely used robust functions. It behaves quadratically for small errors but switches to a linear function at a threshold $b$ for large errors, which prevents the error $e$ from being squared and amplified. Its formal definition is:
 \begin{align}

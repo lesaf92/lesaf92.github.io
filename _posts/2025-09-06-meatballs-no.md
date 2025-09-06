@@ -9,7 +9,7 @@ featured: true
 giscus_comments: true
 ---
 
-A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) quando as almôndegas são servidas. É o prato mais difícil de comer por ser muito mal preparado, nenhum aluno consegue comer aquilo. Inspirada na música "Ponto de Ônibus - Ultrage a Rigor", essa música tem sido o hino de muitas confraternizações onde a Largura de Banda se apresentou.
+A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) quando as almôndegas são servidas. É o prato mais difícil de comer por ser muito mal preparado, nenhum aluno consegue comer aquilo. Inspirada na música "Ponto de Ônibus - Ultrage a Rigor", essa música tem sido o hino de muitas confraternizações onde a Largura de Banda se apresentou. As próximas composições já estão sendo feitas, inicialmente temos ensaiado uma versão de "Crazy Train" batizada de "Trem Doido" e um forró em inglês que ainda estamos desenvolvendo. Em breve, álbum da Largura de Banda em todas as plataformas de streaming!
 
 Adicionei uma demo em mp3, tocada no violão e somente a primeira parte, a fim de entender melhor o ritmo e a melodia.
 
@@ -19,7 +19,7 @@ Adicionei uma demo em mp3, tocada no violão e somente a primeira parte, a fim d
     </div>
 </div>
 
-# Meatballs, no!
+# **Meatballs, no!**
 ## Largura de Banda
 ------
 
