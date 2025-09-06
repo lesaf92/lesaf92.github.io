@@ -104,7 +104,7 @@ This function is designed to down-weight the influence of constraints with large
     data-pswp-width="1669"
     data-pswp-height="2500"
     target="_blank">
-    <img src="assets/img/robust_cost_graph.png" alt="" />
+    <img src="../assets/img/robust_cost_graph.png" alt="" />
   </a>
 </div>
 
