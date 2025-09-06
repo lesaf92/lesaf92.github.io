@@ -52,11 +52,11 @@ $$
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
 
-$$
+\begin{align}
 \chi^2(\xkk) \approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 = \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
 = \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
-$$
+\end{align}
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
 
@@ -95,13 +95,13 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Fig.~\ref{robust_kernels}.
 
 <script type="text/tikz">
-\begin{tikzpicture}[scale=1.0, line cap=round, line join=round]
+\begin{tikzpicture}
 \draw[->] (-4.5,0) -- (4.5,0) node[right] {Residual ($x$)};
 \draw[->] (0,-0.2) -- (0,5.5) node[right] {Cost $\rho(x)$};
 \foreach \x in {-4,-3,-2,-1,1,2,3,4}
-  \draw (\x,0) -- (\x,-0.15) node[below] {\x};
+\draw (\x,0) -- (\x,-0.15) node[below] {\x};
 \foreach \y in {1,2,3,4,5}
-  \draw (0,\y) -- (-0.15,\y) node[left] {\y};
+\draw (0,\y) -- (-0.15,\y) node[left] {\y};
 \node[font=\large] at (0,6.8) {Robust Kernel Functions};
 \draw[blue, thick, domain=-4:4, samples=100, smooth, variable=\x]
   plot ({\x},{0.375*\x*\x}) node[right] {};
@@ -145,6 +145,7 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 \end{align}  
 
 Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in the equation below. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
+
 $$
 \sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s = \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
