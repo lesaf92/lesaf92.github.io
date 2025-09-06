@@ -29,7 +29,7 @@ Formally, consider a system with:
 - A pose composition operator $\boxplus$ that combines pose increments $\Delta \x$ with an existing compact pose $\x$ to yield an updated (potentially non-compact) pose in $\mathbb{R}^d$ ($d \neq c$) {% cite aloise2018matrixdiff %}, the work of {% reference se3_tutorial %} has a detailed explanation on this operation.
 
 
-Our goal is to find the set of robot poses $\x = \begin{bmatrix} \x_1, \x_2, \dots, \x_N \end{bmatrix}^{\top} \in \mathbb{R}^{cN}$ that minimizes the total squared error, the $\chi^2$ cost function:
+Our goal is to find the set of robot poses $\x = \begin{bmatrix} \x_1, \x_2, \dots, \x_N \end{bmatrix}^{\top} \in \mathbb{R}^{cN}$ that minimizes the total squared error, the $\chi^2$ cost function: 
 \begin{align}
     \chi^2(\x) = \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\x)^\top \Omega_j \mathbf{e}_j(\x).
 \end{align}
@@ -44,33 +44,30 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 
 where 
 $$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$$ 
-
-is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
+is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as: 
 \begin{align}
-\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right\|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
+\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{align}
 
-
-Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$:
+Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
 \begin{align}
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
 &= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
 \end{align}
 
-where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as:
+where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
 \begin{align}
 \mathbf{b}^\top &= \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \newline
 \Hessian &= \sum_{e_j \in \mathcal{E}} \mathbf{J}_j^\top \Omega_j \mathbf{J}_j.
 \end{align}
 
-To find the optimal update $\Delta \xk$ that minimizes this quadratic approximation, we set the derivative with respect to $\Delta \xk$ to zero:
+To find the optimal update $\Delta \xk$ that minimizes this quadratic approximation, we set the derivative with respect to $\Delta \xk$ to zero: 
 \begin{align}
 \frac{\partial \chi^2(\xkk)}{\partial \Delta \xk} = 2 \mathbf{b} + 2 \Hessian \Delta \xk = 0.    
 \end{align}
 
-
-Solving for $\Delta \xk$, we obtain the Gauss-Newton update rule:
+Solving for $\Delta \xk$, we obtain the Gauss-Newton update rule: 
 \begin{align}
     \Delta \xk = -\Hessian^{-1} \mathbf{b}.
 \end{align}
@@ -84,7 +81,7 @@ Key aspects of this formulation include the error function, the information matr
 
 A significant challenge in real-world SLAM is the presence of outliers, such as false positive loop closures, that do not fit the model. The standard least-squares formulation is highly sensitive to outliers because the error is squared, causing a single bad measurement to have a disproportionately large influence on the final solution {% cite morrell2024addendumnebula %}.
 
-To mitigate this, the error function can be wrapped in a robust cost function, or kernel, $\rho(\cdot)$. The objective function becomes:
+To mitigate this, the error function can be wrapped in a robust cost function, or kernel, $\rho(\cdot)$. The objective function becomes: 
 \begin{align}
 \chi^{2}(\x)=\sum_{\mathbf{e}_j \in \mathcal{E}}\rho(\mathbf{e}_j^\top \Omega_j \mathbf{e}_j)
 \end{align}
@@ -157,7 +154,7 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 \end{align}
 
 
-Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:
+Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as: 
 \begin{align}
 \label{dcs_eq}
 &\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
