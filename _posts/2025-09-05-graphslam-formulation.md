@@ -45,11 +45,13 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 where 
 $$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$$ 
 is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as: 
+
 \begin{align}
 \mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{align}
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
+
 \begin{align}
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
@@ -57,12 +59,14 @@ Substituting the linearized error into the $\chi^2$ cost function, we get a quad
 \end{align}
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
+
 \begin{align}
 \mathbf{b}^\top &= \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \newline
 \Hessian &= \sum_{e_j \in \mathcal{E}} \mathbf{J}_j^\top \Omega_j \mathbf{J}_j.
 \end{align}
 
 To find the optimal update $\Delta \xk$ that minimizes this quadratic approximation, we set the derivative with respect to $\Delta \xk$ to zero: 
+
 \begin{align}
 \frac{\partial \chi^2(\xkk)}{\partial \Delta \xk} = 2 \mathbf{b} + 2 \Hessian \Delta \xk = 0.    
 \end{align}
@@ -148,19 +152,18 @@ The Huber kernel is one of the most widely used robust functions. It behaves qua
 \end{cases}.
 \end{align}
 
-Geman-McClure is a non-convex kernel that more aggressively suppresses the influence of large errors. As the error $\e$ increases, the cost function flattens out and approaches a constant value $b$, effectively ignoring measurements that are considered strong outliers. Its formula is:
-\begin{align}
+Geman-McClure is a non-convex kernel that more aggressively suppresses the influence of large errors. As the error $\e$ increases, the cost function flattens out and approaches a constant value $b$, effectively ignoring measurements that are considered strong outliers. Its formula is:  
+\begin{align}  
 \rho(e)=\frac{\frac{e^{2}}{2}}{(b+e^{2})}.
-\end{align}
+\end{align}  
 
-
-Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as: 
+Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
 \begin{align}
 \label{dcs_eq}
 &\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s &= \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
-\end{align}
+\end{align}  
 
-where $\mathbf{e}_{\text{lc}}$ is the loop closure constraint, $\Omega_{\text{lc}}$ is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
+where $$\mathbf{e}_{\text{lc}}$$ is the loop closure constraint, $$\Omega_{\text{lc}}$$ is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
 
 Other robust functions such as the Cauchy, Tukey, and Welsh kernels also exist, each offering a different non-convex strategy for down-weighting outliers. The choice of kernel is ultimately a trade-off between the desired level of robustness to extreme outliers and the stability of the optimization process. While non-convex kernels can offer better performance in the presence of severe outliers, convex options such as Huber are often preferred for their reliability and predictable behavior. Experiments show that robust kernels dramatically improve accuracy when initial estimates are poor or when data contains incorrect constraints {% cite lin2021analysis %}.
