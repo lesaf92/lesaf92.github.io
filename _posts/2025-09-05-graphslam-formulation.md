@@ -42,7 +42,10 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 &\approx \mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk,
 \end{align}
 
-where $\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$ is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
+where 
+$$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$$ 
+
+is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
 \begin{align}
 \mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right\|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{align}
