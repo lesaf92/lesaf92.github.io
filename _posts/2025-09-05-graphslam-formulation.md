@@ -9,6 +9,7 @@ featured: true
 related_publications: true
 giscus_comments: true
 tikzjax: true
+thumbnail: assets/img/robust_cost_graph.png
 images:
   photoswipe: true
 ---
@@ -100,7 +101,7 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Figure below.
 
 <div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started">
-  <a href="assets/img/robust_cost_graph.png"
+  <a href="../assets/img/robust_cost_graph.png"
     data-pswp-width="1669"
     data-pswp-height="2500"
     target="_blank">
