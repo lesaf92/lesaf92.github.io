@@ -136,11 +136,12 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 \end{align}  
 
 Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in the equation below. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
-
+$$
 \begin{align}
 \sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s = \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
 \end{align}
+$$
 
 where 
 $$\mathbf{e}_{\text{lc}}$$ 
