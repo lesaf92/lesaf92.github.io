@@ -11,73 +11,76 @@ giscus_comments: true
 
 A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) quando as almôndegas são servidas. É o prato mais difícil de comer por ser muito mal preparado, nenhum aluno consegue comer aquilo. Inspirada na música "Ponto de Ônibus - Ultrage a Rigor", essa música tem sido o hino de muitas confraternizações onde a Largura de Banda se apresentou.
 
-<h3>Meatballs, no!</h3>
-<h4>Largura de Banda</h4>
+
 ````markdown
-Am              F
+# Meatballs, no!
+## Largura de Banda
+------
+
+**Am              F**
 Meatballs - no! Meatballs - no!                 (4x)
 
-Am                            Bm                    Am    Bm
+**Am                            Bm                    Am    Bm**
 O que é que eu 'tô fazendo aqui, Nesse bandejão do Rancho; 
-Am                          Bm                Am    Bm
+**Am                          Bm                Am    Bm**
 Esses alunos sentados aqui, Nesse bandejão do Rancho.
 
-F                         G
+**F                         G**
 Quando eu tiver dinheiro, Quando eu tiver dinheiro, 
-F                          G              
+**F                          G**
 Eu prometo a mim mesmo que eu só vou comer 
-Am         F
+**Am         F**
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)
 
 
-(Am Bm)
-Am                                            
+(**Am Bm**)
+**Am**
 Ainda se o arroz não tivesse empedrado, 
-Bm                                            
+**Bm**
 Ainda se o molho não tivesse aguado, 
-Am                                           
+**Am**
 E esse soldado, aqui do meu lado, 
-Bm                                       
+**Bm**
 Com um fuzil super carregado.
 
 
-F                         G
+**F                         G**
 Quando eu tiver dinheiro, Quando eu tiver dinheiro, 
-F                          G              
+**F                          G**
 Eu prometo a mim mesmo que eu só vou comer 
-Am         F
+**Am         F**
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)
 
-(Am Bm)
-Am                                            
+(**Am Bm**)
+**Am**
 "Meatballs confirmed" já virou rotina
-Bm                                            
+**Bm**
 Tem um soldado servindo a proteína
-Am                                 
+**Am**
 Inconsciente e sem disciplina
-Bm                                       
+**Bm**
 O que me resta é ir na cantina
 
 
-F                         G
+**F                         G**
 Quando eu tiver dinheiro, Quando eu tiver dinheiro, 
-F                          G              
+**F                          G**
 Eu prometo a mim mesmo que eu só vou comer 
-Am         F
+**Am         F**
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)
 
-(Am Bm)
-Am                                            
+(**Am Bm**)
+*Am**
 Não dá pra engolir, parece isopor 
-Bm                                           
+**Bm**
 Essa bola de carne não tem gosto nem cor 
-Am                                            
+**Am**
 A gente cutuca e só sente pavor!
-Bm                                            
+**Bm**
 E até a sobremesa aqui é um show de horror
 
 
 
-Am              F
+**Am              F**
 Meatballs - no! Meatballs - no!              (4x)
 ````

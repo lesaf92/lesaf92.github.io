@@ -153,7 +153,7 @@ The Huber kernel is one of the most widely used robust functions. It behaves qua
 \begin{align}
 \rho(e) = 
 \begin{cases}
-    e^{2}, & \text{if } |e| \le b \\
+    e^{2}, & \text{if } |e| \le b \newline
     2b|e| - b^{2}, & \text{otherwise}
 \end{cases}.
 \end{align}
@@ -166,7 +166,8 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 
 Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:
 \begin{align}
-&\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \label{dcs_eq}\\
+\label{dcs_eq}
+&\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s &= \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
 \end{align}
 where $\mathbf{e}_{\text{lc}}$ is the loop closure constraint, $\Omega_{\text{lc}}$ is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
