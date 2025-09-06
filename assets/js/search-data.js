@@ -65,7 +65,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/news/";
               },
-            },{id: "post-graphslam-formulation",
+            },{id: "post-meatballs-no",
+        
+          title: "Meatballs, no!",
+        
+        description: "guitar chords and lyrics for my latest composition &quot;Meatballs, no!&quot;",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/meatballs-no/";
+          
+        },
+      },{id: "post-graphslam-formulation",
         
           title: "GraphSLAM Formulation",
         
