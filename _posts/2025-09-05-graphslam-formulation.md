@@ -4,7 +4,7 @@ title: GraphSLAM Formulation
 date: 2025-09-05 00:09:00
 description: mathematical formulation for graph-based SLAM
 tags: slam latex
-categories: work
+categories: work english
 featured: true
 related_publications: true
 giscus_comments: true
