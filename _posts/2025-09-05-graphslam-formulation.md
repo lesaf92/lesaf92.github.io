@@ -8,6 +8,7 @@ categories: work
 featured: true
 related_publications: true
 giscus_comments: true
+tikzjax: true
 ---
 $$
 \newcommand\x{\mathbf{x}}
@@ -20,15 +21,13 @@ $$
 In the context of \acrshort{slam}, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values \cite{grisetti2010tutorial}. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors. %Pose representation follows the parametrization described in Apenddix A \cite{se3_tutorial}.
 
 Formally, consider a system with:
-\begin{itemize}
-    \item A set of $M$ measurements, or constraints in the graph. Each measurement $e_j \in \mathcal{E}$ is associated with:
-    \begin{itemize}
-        \item An error vector $\mathbf{e}_j \in \mathbb{R}^{n_j}$, where $n_j$ is the dimensionality of the measurement error, which is dependent on the sensor type.
-        \item An information matrix $\Omega_j \in \mathbb{R}^{n_j \times n_j}$, representing the inverse covariance of the measurement noise.
-    \end{itemize}
-    \item A set of $N$ robot poses, or vertices in the graph, $\mathcal{V} = \{v_1, \dots, v_N\}$. Each pose $v_i \in \mathcal{V}$ is represented by a compact state vector $\x_i \in \mathbb{R}^c$, for the 3D case, $c = 6$ and $\x = \begin{bmatrix}x,\; y,\; z,\; \phi,\; \theta,\; \psi\end{bmatrix}^\top$.
-    \item A pose composition operator $\boxplus$ that combines pose increments $\Delta \x$ with an existing compact pose $\x$ to yield an updated (potentially non-compact) pose in $\mathbb{R}^d$ ($d \neq c$) \cite{aloise2018matrixdiff}, the work of \citeonline{se3_tutorial} has a detailed explanation on this operation.
-\end{itemize}
+
+- A set of $M$ measurements, or constraints in the graph. Each measurement $e_j \in \mathcal{E}$ is associated with:
+    - An error vector $\mathbf{e}_j \in \mathbb{R}^{n_j}$, where $n_j$ is the dimensionality of the measurement error, which is dependent on the sensor type.
+    - An information matrix $\Omega_j \in \mathbb{R}^{n_j \times n_j}$, representing the inverse covariance of the measurement noise.
+- A set of $N$ robot poses, or vertices in the graph, $\mathcal{V} = \{v_1, \dots, v_N\}$. Each pose $v_i \in \mathcal{V}$ is represented by a compact state vector $\x_i \in \mathbb{R}^c$, for the 3D case, $c = 6$ and $\x = \begin{bmatrix}x,\; y,\; z,\; \phi,\; \theta,\; \psi\end{bmatrix}^\top$.
+- A pose composition operator $\boxplus$ that combines pose increments $\Delta \x$ with an existing compact pose $\x$ to yield an updated (potentially non-compact) pose in $\mathbb{R}^d$ ($d \neq c$) \cite{aloise2018matrixdiff}, the work of \citeonline{se3_tutorial} has a detailed explanation on this operation.
+
 
 Our goal is to find the set of robot poses $\x = \begin{bmatrix} \x_1, \x_2, \dots, \x_N \end{bmatrix}^{\top} \in \mathbb{R}^{cN}$ that minimizes the total squared error, the $\chi^2$ cost function:
 \begin{align}
@@ -37,7 +36,7 @@ Our goal is to find the set of robot poses $\x = \begin{bmatrix} \x_1, \x_2, \do
 
 This optimization problem is typically non-linear and is solved iteratively using techniques such as Gauss-Newton (GN), Levenberg-Marquardt (LM) \cite{levenberg1944method}, Powell’s dogleg (PDL) \cite{powell1970pdl} or Graduated Non-Convexity (GNC) \cite{yang2020gnc}. Let $\xk$ be the estimate of the state vector at iteration $k$. We seek an update $\Delta \xk$ such that the updated state $\xkk = \xk \boxplus \Delta \xk$ leads to a lower $\chi^2$ value.
 
-To find this update, we linearize the error function $\mathbf{e}_j(\xkk)$ around the current estimate $\xk$:
+To find this update, we linearize the error function $\e_j(\xkk)$ around the current estimate $\xk$:
 \begin{align}
 \mathbf{e}_j(\xkk) &= \mathbf{e}_j(\xk \boxplus \Delta \xk) \\
 &\approx \mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk,
@@ -78,9 +77,6 @@ The GN optimization technique (derived above), can converge quickly, but it can 
 Key aspects of this formulation include the error function, the information matrix and the Jacobian matrix. The structure of the Hessian matrix, often sparse in large-scale SLAM problems, is crucial for efficient computation of the optimal state estimate \cite{grisetti2010tutorial}.
 
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 A significant challenge in real-world SLAM is the presence of outliers, such as false positive loop closures, that do not fit the model. The standard least-squares formulation is highly sensitive to outliers because the error is squared, causing a single bad measurement to have a disproportionately large influence on the final solution \cite{morrell2024addendumnebula}.
 
 To mitigate this, the error function can be wrapped in a robust cost function, or kernel, $\rho(\cdot)$. The objective function becomes:
@@ -90,16 +86,70 @@ To mitigate this, the error function can be wrapped in a robust cost function, o
 
 The g2o framework provides several robust kernels, with the Huber kernel being one of the most common. The Huber function is quadratic for small errors but becomes linear for large errors. This means it penalizes outliers less severely than a standard quadratic function, preventing them from corrupting the entire optimization. A key advantage of the Huber kernel is that it remains convex, which means it does not introduce new local minima into the optimization problem, ensuring more stable convergence.
 
-% Experiments show that using a robust kernel like Huber can dramatically improve the accuracy of the optimization, especially when the initial estimates are poor or when the data contains incorrect loop closure constraints. While these kernels are effective against poor initialization, they may not be sufficient to handle a large number of false positive loop closures on their own, which remains an active area of research.
-
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization \cite{mactavish2015robustkernels}. The g2o framework provides several such kernels, each with different properties, as shown in Fig.~\ref{robust_kernels}.
 
-\begin{figure}[]
-    \centering
-    \includegraphics[width=0.7\columnwidth]{images/robust_kernels_plot.pdf}
-    \caption{A comparison of different robust kernel functions. The standard quadratic cost function grows indefinitely, giving large influence to outliers. The Huber kernel becomes linear after a threshold, while more aggressive non-convex kernels such as Geman-McClure and Cauchy flatten out, effectively ignoring extreme outliers.}
-    \label{robust_kernels}
-\end{figure}
+<script type="text/tikz">
+\begin{tikzpicture}
+  \begin{axis}[
+    width=14cm,height=10cm,
+    xmin=-4, xmax=4,
+    ymin=0,  ymax=6.2,
+    xlabel={Residual (x)},
+    ylabel={Cost $\rho(x)$},
+    xlabel style={font=\large},
+    ylabel style={font=\large, rotate=90, yshift=-5mm},
+    grid=both,
+    grid style={gray!30, line width=0.4pt},
+    major grid style={gray!40},
+    minor tick num=1,
+    tick label style={font=\small},
+    xtick={-4,-3,-2,-1,0,1,2,3,4},
+    ytick={0,1,2,3,4,5,6},
+    axis lines=middle,
+    clip=false,
+    every axis plot/.append style={line width=2pt},
+    legend style={
+       at={(0.5,0.82)}, anchor=north,
+       draw=black!60, fill=white, rounded corners=3pt,
+       font=\small
+    },
+    title={\Large Robust Kernel Functions},
+    title style={yshift=1mm}
+  ]
+
+  % L2 (quadratic) -- blue
+  \addplot[smooth,domain=-4:4,blue]
+    {0.375*(x^2)};
+  \addlegendentry{L2}
+
+  % L1 (absolute) -- orange
+  \addplot[smooth,domain=-4:4,orange]
+    {abs(x)};
+  \addlegendentry{L1}
+
+  % Geman-McClure (scaled) -- green
+  \addplot[smooth,domain=-4:4,green!60!black]
+    {0.5 * x^2 / (1 + x^2)};
+  \addlegendentry{Geman-McClure}
+
+  % Huber (k = 1) -- red
+  \addplot[smooth,domain=-4:4,red]
+    { (abs(x) <= 1) * (0.5*x^2) + (abs(x) > 1) * (1*(abs(x) - 0.5)) };
+  \addlegendentry{Huber}
+
+  % Cauchy (c = 1): 0.5 * ln(1 + (x/c)^2) -- purple
+  \addplot[smooth,domain=-4:4,purple]
+    {0.5 * ln(1 + x^2)};
+  \addlegendentry{Cauchy}
+
+  % DCS-like (exponential saturating) -- brown
+  \addplot[smooth,domain=-4:4,brown]
+    {0.9 * (1 - exp(-0.5 * x^2))};
+  \addlegendentry{DCS}
+
+  \end{axis}
+\end{tikzpicture}
+</script>
 
 The Huber kernel is one of the most widely used robust functions. It behaves quadratically for small errors but switches to a linear function at a threshold $b$ for large errors, which prevents the error $e$ from being squared and amplified. Its formal definition is:
 \begin{align}
