@@ -46,17 +46,17 @@ where
 $$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right|_{\Delta \xk = \mathbf{0}}$$ 
 is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as: 
 
-\begin{equation}
-\mathbf{J} = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
-\end{equation}
+$$
+\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
+$$
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
 
-\begin{align}
+$$
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
 &= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
-\end{align}
+$$
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
 
@@ -157,12 +157,11 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 \rho(e)=\frac{\frac{e^{2}}{2}}{(b+e^{2})}.
 \end{align}  
 
-Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in eq. \eqref{dcs_eq}. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
-\begin{align}
-\label{dcs_eq}
+Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in the equation below. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
+$$
 &\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s &= \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
-\end{align}  
+$$
 
 where 
 $$\mathbf{e}_{\text{lc}}$$ 
