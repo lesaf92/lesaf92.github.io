@@ -70,7 +70,7 @@ Eu prometo a mim mesmo que eu só vou comer
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)
 
 (**Am Bm**)
-*Am**
+**Am**
 Não dá pra engolir, parece isopor 
 **Bm**
 Essa bola de carne não tem gosto nem cor 
