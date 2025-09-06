@@ -9,6 +9,8 @@ featured: true
 related_publications: true
 giscus_comments: true
 tikzjax: true
+images:
+  photoswipe: true
 ---
 $$
 \newcommand\x{\mathbf{x}}
@@ -96,6 +98,15 @@ To mitigate this, the error function can be wrapped in a robust cost function, o
 The g2o framework provides several robust kernels, with the Huber kernel being one of the most common. The Huber function is quadratic for small errors but becomes linear for large errors. This means it penalizes outliers less severely than a standard quadratic function, preventing them from corrupting the entire optimization. A key advantage of the Huber kernel is that it remains convex, which means it does not introduce new local minima into the optimization problem, ensuring more stable convergence.
 
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Figure below.
+
+<div class="pswp-gallery pswp-gallery--single-column" id="gallery--getting-started">
+  <a href="assets/img/robust_cost_graph.png"
+    data-pswp-width="1669"
+    data-pswp-height="2500"
+    target="_blank">
+    <img src="assets/img/robust_cost_graph.png" alt="" />
+  </a>
+</div>
 
 <script type="text/tikz">
 \begin{tikzpicture}
