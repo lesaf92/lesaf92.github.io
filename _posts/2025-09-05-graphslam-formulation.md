@@ -51,18 +51,22 @@ $$
 $$
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$:
+$$
 \begin{align}
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
 &= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
 \end{align}
+$$
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
 
+$$
 \begin{align}
 \mathbf{b}^\top = \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \newline
 \Hessian = \sum_{e_j \in \mathcal{E}} \mathbf{J}_j^\top \Omega_j \mathbf{J}_j.
 \end{align}
+$$
 
 To find the optimal update $\Delta \xk$ that minimizes this quadratic approximation, we set the derivative with respect to $\Delta \xk$ to zero: 
 
