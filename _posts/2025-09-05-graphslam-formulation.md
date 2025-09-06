@@ -42,9 +42,9 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 &\approx \mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk,
 \end{align}
 
-where $\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right|_{\Delta \xk = \mathbf{0}}$ is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
+where $\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right\|_{\Delta \xk = \mathbf{0}}$ is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
 \begin{align}
-\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
+\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right\|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{align}
 
 
@@ -52,7 +52,7 @@ Substituting the linearized error into the $\chi^2$ cost function, we get a quad
 \begin{align}
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
-&= \chi_k^2 + 2 \mathbf{b}^T \Delta \xk + (\Delta \xk)^T \Hessian \Delta \xk,
+&= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
 \end{align}
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as:
