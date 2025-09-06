@@ -11,8 +11,14 @@ giscus_comments: true
 
 A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) quando as almôndegas são servidas. É o prato mais difícil de comer por ser muito mal preparado, nenhum aluno consegue comer aquilo. Inspirada na música "Ponto de Ônibus - Ultrage a Rigor", essa música tem sido o hino de muitas confraternizações onde a Largura de Banda se apresentou.
 
+Adicionei uma demo em mp3 para entender melhor o ritmo e a melodia.
 
-````markdown
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include audio.liquid path="assets/audio/meatballs_no_demo.mp3" controls=true %}
+    </div>
+</div>
+
 # Meatballs, no!
 ## Largura de Banda
 ------
@@ -39,7 +45,7 @@ Ainda se o arroz não tivesse empedrado,
 **Bm**
 Ainda se o molho não tivesse aguado, 
 **Am**
-E esse soldado, aqui do meu lado, 
+E o soldado, aqui do meu lado, 
 **Bm**
 Com um fuzil super carregado.
 
@@ -83,4 +89,3 @@ E até a sobremesa aqui é um show de horror
 
 **Am              F**
 Meatballs - no! Meatballs - no!              (4x)
-````

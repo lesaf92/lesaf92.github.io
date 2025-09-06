@@ -9,7 +9,6 @@ featured: true
 related_publications: true
 giscus_comments: true
 tikzjax: true
-bibliography: references.bib
 ---
 $$
 \newcommand\x{\mathbf{x}}
@@ -42,9 +41,10 @@ To find this update, we linearize the error function $\e_j(\xkk)$ around the cur
 \mathbf{e}_j(\xkk) &= \mathbf{e}_j(\xk \boxplus \Delta \xk) \newline
 &\approx \mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk,
 \end{align}
+
 where $\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial \Delta \xk} \right|_{\Delta \xk = \mathbf{0}}$ is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as:
 \begin{align}
-\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.    
+\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{align}
 
 
@@ -54,6 +54,7 @@ Substituting the linearized error into the $\chi^2$ cost function, we get a quad
 &= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
 &= \chi_k^2 + 2 \mathbf{b}^T \Delta \xk + (\Delta \xk)^T \Hessian \Delta \xk,
 \end{align}
+
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as:
 \begin{align}
 \mathbf{b}^\top &= \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \newline
@@ -92,36 +93,27 @@ This function is designed to down-weight the influence of constraints with large
 <script type="text/tikz">
 \begin{tikzpicture}[scale=1.0, line cap=round, line join=round]
 
-% Axes
 \draw[->] (-4.5,0) -- (4.5,0) node[right] {Residual ($x$)};
 \draw[->] (0,-0.2) -- (0,5.5) node[right] {Cost $\rho(x)$};
 
-% X ticks and labels
 \foreach \x in {-4,-3,-2,-1,1,2,3,4}
   \draw (\x,0) -- (\x,-0.15) node[below] {\x};
 
-% Y ticks and labels
 \foreach \y in {1,2,3,4,5}
   \draw (0,\y) -- (-0.15,\y) node[left] {\y};
 
-% Title
 \node[font=\large] at (0,6.8) {Robust Kernel Functions};
 
-% --- Functions (plotted manually with parametric sampling) ---
 
-% L2: 0.375 x^2
 \draw[blue, thick, domain=-4:4, samples=100, smooth, variable=\x]
   plot ({\x},{0.375*\x*\x}) node[right] {};
 
-% L1: |x|
 \draw[orange, thick, domain=-4:4, samples=100, variable=\x]
   plot ({\x},{abs(\x)});
 
-% Geman-McClure: 0.5 x^2 / (1+x^2)
 \draw[green!50!black, thick, domain=-4:4, samples=100, smooth, variable=\x]
   plot ({\x},{0.5*\x*\x/(1+\x*\x)});
 
-% Huber: 0.5 x^2 if |x|<1 else |x|-0.5
 \draw[red, thick, domain=-1:1, samples=50, smooth, variable=\x]
   plot ({\x},{0.5*\x*\x});
 \draw[red, thick, domain=1:4, samples=2, variable=\x]
@@ -129,15 +121,12 @@ This function is designed to down-weight the influence of constraints with large
 \draw[red, thick, domain=-4:-1, samples=2, variable=\x]
   plot ({\x},{-\x-0.5});
 
-% Cauchy: 0.5 ln(1+x^2)
 \draw[purple, thick, domain=-4:4, samples=100, smooth, variable=\x]
   plot ({\x},{0.5*ln(1+\x*\x)});
 
-% DCS-like: 0.9*(1-exp(-0.5 x^2))
 \draw[brown, thick, domain=-4:4, samples=100, smooth, variable=\x]
   plot ({\x},{0.9*(1-exp(-0.5*\x*\x))});
 
-% Legend (manual)
 \begin{scope}[shift={(4.5,5.5)}]
   \draw[blue, thick] (0,0) -- (0.5,0) node[right, black] {L2};
   \draw[orange, thick] (0,-0.5) -- (0.5,-0.5) node[right, black] {L1};
@@ -171,6 +160,7 @@ Dynamic Covariance Scaling (DCS) takes a different approach by introducing an ad
 &\sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s &= \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
 \end{align}
+
 where $\mathbf{e}_{\text{lc}}$ is the loop closure constraint, $\Omega_{\text{lc}}$ is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
 
 Other robust functions such as the Cauchy, Tukey, and Welsh kernels also exist, each offering a different non-convex strategy for down-weighting outliers. The choice of kernel is ultimately a trade-off between the desired level of robustness to extreme outliers and the stability of the optimization process. While non-convex kernels can offer better performance in the presence of severe outliers, convex options such as Huber are often preferred for their reliability and predictable behavior. Experiments show that robust kernels dramatically improve accuracy when initial estimates are poor or when data contains incorrect constraints {% cite lin2021analysis %}.
