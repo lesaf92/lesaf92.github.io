@@ -47,7 +47,7 @@ $$\mathbf{J}_j = \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\p
 is the Jacobian matrix of the error function with respect to the state update. Using the chain rule, the Jacobian can be further decomposed as: 
 
 \begin{equation}
-\mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
+\mathbf{J} = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 \end{equation}
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
