@@ -41,5 +41,5 @@ My primary research interests include:
 
 In addition to research, I develop tools and write technical documentation aimed at supporting the robotics community.
 
-You are welcome to explore my ongoing projects, read my publications, or browse my repositories.  
+Here you can find most of my other interests besides work stuff, such as music, games, or random ideas. You are welcome to explore my posts and ongoing projects, read my publications, or browse my repositories.
 I am always open to collaboration opportunities, especially in projects that combine robotics and real-world applications.
