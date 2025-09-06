@@ -50,12 +50,11 @@ $$
 \mathbf{J}_j = \left( \left. \frac{\partial \mathbf{e}_j(\xk \boxplus \Delta \xk)}{\partial (\xk \boxplus \Delta \xk)} \right|_{\Delta \xk = \mathbf{0}} \right) \frac{\partial (\xk \boxplus \Delta \xk)}{\partial \Delta \xk}.
 $$
 
-Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$: 
-
+Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$:
 \begin{align}
-\chi^2(\xkk) \approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
-= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
-= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
+\chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
+&= \sum_{e_j \in \mathcal{E}} \left[ \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{e}_j(\xk) + 2 \mathbf{e}_j(\xk)^\top \Omega_j \mathbf{J}_j \Delta \xk + (\Delta \xk)^\top \mathbf{J}_j^\top \Omega_j \mathbf{J}_j \Delta \xk \right] \newline
+&= \chi_k^2 + 2 \mathbf{b}^\top \Delta \xk + (\Delta \xk)^\top \Hessian \Delta \xk,
 \end{align}
 
 where the gradient vector $\mathbf{b}$ and the Hessian matrix $\Hessian$ are defined as: 
@@ -92,7 +91,7 @@ To mitigate this, the error function can be wrapped in a robust cost function, o
 
 The g2o framework provides several robust kernels, with the Huber kernel being one of the most common. The Huber function is quadratic for small errors but becomes linear for large errors. This means it penalizes outliers less severely than a standard quadratic function, preventing them from corrupting the entire optimization. A key advantage of the Huber kernel is that it remains convex, which means it does not introduce new local minima into the optimization problem, ensuring more stable convergence.
 
-This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Fig.~\ref{robust_kernels}.
+This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in Figure below.
 
 <script type="text/tikz">
 \begin{tikzpicture}
@@ -103,22 +102,14 @@ This function is designed to down-weight the influence of constraints with large
 \foreach \y in {1,2,3,4,5}
 \draw (0,\y) -- (-0.15,\y) node[left] {\y};
 \node[font=\large] at (0,6.8) {Robust Kernel Functions};
-\draw[blue, thick, domain=-4:4, samples=100, smooth, variable=\x]
-  plot ({\x},{0.375*\x*\x}) node[right] {};
-\draw[orange, thick, domain=-4:4, samples=100, variable=\x]
-  plot ({\x},{abs(\x)});
-\draw[green!50!black, thick, domain=-4:4, samples=100, smooth, variable=\x]
-  plot ({\x},{0.5*\x*\x/(1+\x*\x)});
-\draw[red, thick, domain=-1:1, samples=50, smooth, variable=\x]
-  plot ({\x},{0.5*\x*\x});
-\draw[red, thick, domain=1:4, samples=2, variable=\x]
-  plot ({\x},{\x-0.5});
-\draw[red, thick, domain=-4:-1, samples=2, variable=\x]
-  plot ({\x},{-\x-0.5});
-\draw[purple, thick, domain=-4:4, samples=100, smooth, variable=\x]
-  plot ({\x},{0.5*ln(1+\x*\x)});
-\draw[brown, thick, domain=-4:4, samples=100, smooth, variable=\x]
-  plot ({\x},{0.9*(1-exp(-0.5*\x*\x))});
+\draw[blue, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.375*\x*\x}) node[right] {};
+\draw[orange, thick, domain=-4:4, samples=100, variable=\x] plot ({\x},{abs(\x)});
+\draw[green!50!black, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.5*\x*\x/(1+\x*\x)});
+\draw[red, thick, domain=-1:1, samples=50, smooth, variable=\x] plot ({\x},{0.5*\x*\x});
+\draw[red, thick, domain=1:4, samples=2, variable=\x] plot ({\x},{\x-0.5});
+\draw[red, thick, domain=-4:-1, samples=2, variable=\x] plot ({\x},{-\x-0.5});
+\draw[purple, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.5*ln(1+\x*\x)});
+\draw[brown, thick, domain=-4:4, samples=100, smooth, variable=\x] plot ({\x},{0.9*(1-exp(-0.5*\x*\x))});
 \begin{scope}[shift={(4.5,5.5)}]
   \draw[blue, thick] (0,0) -- (0.5,0) node[right, black] {L2};
   \draw[orange, thick] (0,-0.5) -- (0.5,-0.5) node[right, black] {L1};
@@ -146,10 +137,10 @@ Geman-McClure is a non-convex kernel that more aggressively suppresses the influ
 
 Dynamic Covariance Scaling (DCS) takes a different approach by introducing an additional scaling factor $s$ that directly modifies the information matrix for each loop closure constraint, as shown in the equation below. The scaling factor is close to 1 for inliers but drops towards zero for outliers, effectively down-rating their influence on the optimization {% cite agarwal2013dcs %}. The scaling factor is defined as:  
 
-$$
+\begin{align}
 \sum \mathbf{e}_{\text{lc}}(\x)^\top (s^2 \Omega_{\text{lc}}) \; \mathbf{e}_{\text{lc}}(\x), \newline
 s = \min\Bigg(1, \frac{2\Phi}{\Phi+\chi_{\text{lc}}^2}\Bigg)
-$$
+\end{align}
 
 where 
 $$\mathbf{e}_{\text{lc}}$$ 
