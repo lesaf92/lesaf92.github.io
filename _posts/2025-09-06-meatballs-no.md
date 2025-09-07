@@ -14,7 +14,7 @@ _styles: >
         font-family: 'Courier New', Courier, monospace;
         font-size: 1.1em;
         line-height: 1.8;
-        background-color: #fafafa;
+        background-color: #bababaff;
         padding: 15px;
         border-radius: 6px;
         border: 1px solid #eee;
@@ -23,6 +23,8 @@ _styles: >
         color: #d9534f; /* A color to highlight the chords */
         font-weight: bold;
     }
+    h3 { font-size: 1.8em; }
+    h4 { font-size: 1.2em; color: #606770; }
 ---
 
 A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) quando as almôndegas são servidas. É o prato mais difícil de comer por ser muito mal preparado, nenhum aluno consegue comer aquilo. Inspirada na música "Ponto de Ônibus - Ultrage a Rigor", essa música tem sido o hino de muitas confraternizações onde a Largura de Banda se apresentou. As próximas composições já estão sendo feitas, inicialmente temos ensaiado uma versão de "Crazy Train" batizada de "Trem Doido" e um forró em inglês que ainda estamos desenvolvendo. Em breve, álbum da Largura de Banda em todas as plataformas de streaming!
@@ -36,74 +38,72 @@ Adicionei uma demo em mp3, tocada no violão e somente a primeira parte, a fim d
 </div>
 
 <pre>
-<h1>
-Meatballs, no!
-<span style="font-weight:normal;"><em>Largura de Banda</em></span>
-</h1>
+<h3>Meatballs, no!</h3>
+<h4>Largura de Banda</h4>
 
 <b>Am              F</b>
 Meatballs - no! Meatballs - no!                 (4x)
   
-Am                            Bm                    Am    Bm  
+<b>Am                            Bm                    Am    Bm  </b>
 O que é que eu 'tô fazendo aqui, Nesse bandejão do Rancho;  
-Am                          Bm                Am    Bm  
+<b>Am                          Bm                Am    Bm  </b>
 Esses alunos sentados aqui, Nesse bandejão do Rancho.  
   
-F                         G  
+<b>F                         G  </b>
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,  
-F                          G  
+<b>F                          G  </b>
 Eu prometo a mim mesmo que eu só vou comer  
-Am         F  
+<b>Am         F  </b>
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
   
-(Am Bm)  
-Am  
+(<b>Am Bm</b>)  
+<b>Am  </b>
 Ainda se o arroz não tivesse empedrado,  
-Bm  
+<b>Bm  </b>
 Ainda se o molho não tivesse aguado,  
-Am  
+<b>Am  </b>
 E o soldado, aqui do meu lado,   
-Bm  
+<b>Bm  </b>
 Com um fuzil super carregado.  
   
   
-F                         G  
+<b>F                         G  </b>
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,   
-F                          G  
+<b>F                          G  </b>
 Eu prometo a mim mesmo que eu só vou comer   
-Am         F  
+<b>Am         F  </b>
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
-(Am Bm)  
-Am  
+(<b>Am Bm</b>)  
+<b>Am  </b>
 "Meatballs confirmed" já virou rotina  
-Bm  
+<b>Bm  </b>
 Tem um soldado servindo a proteína  
-Am  
+<b>Am  </b>
 Inconsciente e sem disciplina  
-Bm  
+<b>Bm  </b>
 O que me resta é ir na cantina  
   
   
-F                         G  
+<b>F                         G  </b>
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,   
-F                          G  
+<b>F                          G  </b>
 Eu prometo a mim mesmo que eu só vou comer   
-Am         F  
+<b>Am         F  </b>
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
-(Am Bm)  
-Am  
+(<b>Am Bm</b>)  
+<b>Am  </b>
 Não dá pra engolir, parece isopor   
-Bm  
+<b>Bm  </b>
 Essa bola de carne não tem gosto nem cor   
-Am  
+<b>Am  </b>
 A gente cutuca e só sente pavor!  
-Bm  
+<b>Bm  </b>
 E até a sobremesa aqui é um show de horror  
   
   
-Am              F  
+<b>Am              F  </b>
 Meatballs - no! Meatballs - no!              (4x)  
 </pre>
