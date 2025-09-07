@@ -100,7 +100,7 @@ This function is designed to down-weight the influence of constraints with large
 
 <div class="row mt-3">
   <div class="col-sm-3 mt-3 mt-md-0 text-center">
-      {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true" %}
+      {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
   </div>
 </div>
 
