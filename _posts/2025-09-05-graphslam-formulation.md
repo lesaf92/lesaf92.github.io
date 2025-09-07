@@ -9,6 +9,7 @@ featured: true
 related_publications: true
 giscus_comments: true
 thumbnail: assets/img/robust_cost_graph.png
+bibliography: _bibliography/references.bib
 ---
 $$
 \newcommand\x{\mathbf{x}}
@@ -18,7 +19,7 @@ $$
 \newcommand\I{\mathbf{I}}
 \newcommand\e{\mathbf{e}}
 $$
-In the context of SLAM, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values {% cite grisetti2010tutorial %}. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors.
+In the context of SLAM, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values {% cite grisetti2010tutorial %}. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors. {% cite forster2016manifold %}
 
 Formally, consider a system with:
 
@@ -98,7 +99,7 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in the figure below:
 
 <div class="row mt-3">
-  <div class="col-sm mt-3 mt-md-0">
+  <div class="col-sm-3 mt-3 mt-md-0">
       {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
   </div>
 </div>
