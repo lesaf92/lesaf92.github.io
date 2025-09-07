@@ -1,5 +1,5 @@
 ---
-layout: distill
+layout: post
 title: GraphSLAM Formulation
 date: 2025-09-05 00:09:00
 description: mathematical formulation for graph-based SLAM
@@ -98,7 +98,7 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization {% cite mactavish2015robustkernels %}. The g2o framework provides several such kernels, each with different properties, as shown in the figure below:
 
-<div class="row mt-3">
+<div class="row mt-3 text-center">
   <div class="col-sm-3 mt-3 mt-md-0">
       {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
   </div>
