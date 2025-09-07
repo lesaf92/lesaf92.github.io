@@ -3,8 +3,6 @@ layout: page
 permalink: /repositories/
 title: repositories
 description: Github stuff and selected repositories for quick access.
-nav: true
-nav_order: 4
 ---
 
 {% if site.data.repositories.github_users %}
