@@ -13,78 +13,81 @@ A letra se trata da revolta dos alunos do ITA que comem no Rancho (restaurante) 
 
 Adicionei uma demo em mp3, tocada no violão e somente a primeira parte, a fim de entender melhor o ritmo e a melodia.
 
-<div class="row mt-3">
+<div class="row mt-3 text-center">
     <div class="col-sm mt-3 mt-md-0">
         {% include audio.liquid path="assets/audio/meatballs_no_demo.mp3" controls=true %}
     </div>
 </div>
 
-# **Meatballs, no!**
-## Largura de Banda
-------
+<pre>
+<h1>
+Meatballs, no!
+<span style="font-weight:normal;"><em>Largura de Banda</em></span>
+</h1>
 
-**Am              F**  
+Am              F  
 Meatballs - no! Meatballs - no!                 (4x)
   
-**Am                            Bm                    Am    Bm**  
+Am                            Bm                    Am    Bm  
 O que é que eu 'tô fazendo aqui, Nesse bandejão do Rancho;  
-**Am                          Bm                Am    Bm**  
+Am                          Bm                Am    Bm  
 Esses alunos sentados aqui, Nesse bandejão do Rancho.  
   
-**F                         G**  
+F                         G  
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,  
-**F                          G**  
+F                          G  
 Eu prometo a mim mesmo que eu só vou comer  
-**Am         F**  
+Am         F  
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
   
-(**Am Bm**)  
-**Am**  
+(Am Bm)  
+Am  
 Ainda se o arroz não tivesse empedrado,  
-**Bm**  
+Bm  
 Ainda se o molho não tivesse aguado,  
-**Am**  
+Am  
 E o soldado, aqui do meu lado,   
-**Bm**  
+Bm  
 Com um fuzil super carregado.  
   
   
-**F                         G**  
+F                         G  
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,   
-**F                          G**  
+F                          G  
 Eu prometo a mim mesmo que eu só vou comer   
-**Am         F**  
+Am         F  
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
-(**Am Bm**)  
-**Am**  
+(Am Bm)  
+Am  
 "Meatballs confirmed" já virou rotina  
-**Bm**  
+Bm  
 Tem um soldado servindo a proteína  
-**Am**  
+Am  
 Inconsciente e sem disciplina  
-**Bm**  
+Bm  
 O que me resta é ir na cantina  
   
   
-**F                         G**  
+F                         G  
 Quando eu tiver dinheiro, Quando eu tiver dinheiro,   
-**F                          G**  
+F                          G  
 Eu prometo a mim mesmo que eu só vou comer   
-**Am         F**  
+Am         F  
 no shopping. (É... o que é que eu tô fazendo aqui...)              (2x)  
   
-(**Am Bm**)  
-**Am**  
+(Am Bm)  
+Am  
 Não dá pra engolir, parece isopor   
-**Bm**  
+Bm  
 Essa bola de carne não tem gosto nem cor   
-**Am**  
+Am  
 A gente cutuca e só sente pavor!  
-**Bm**  
+Bm  
 E até a sobremesa aqui é um show de horror  
   
   
-**Am              F**  
+Am              F  
 Meatballs - no! Meatballs - no!              (4x)  
+</pre>

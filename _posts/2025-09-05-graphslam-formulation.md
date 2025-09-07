@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: distill
 title: GraphSLAM Formulation
 date: 2025-09-05 00:09:00
 description: mathematical formulation for graph-based SLAM
@@ -19,7 +19,7 @@ $$
 \newcommand\I{\mathbf{I}}
 \newcommand\e{\mathbf{e}}
 $$
-In the context of SLAM, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values {% cite grisetti2010tutorial %}. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors. {% cite forster2016manifold %}
+In the context of SLAM, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values {% cite grisetti2010tutorial %}. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors. <d-cite key="forster2016manifold"></d-cite>
 
 Formally, consider a system with:
 
