@@ -6,6 +6,7 @@ description: guitar chords and lyrics for my latest composition "Meatballs, no!"
 tags: lyrics band
 categories: music portuguese
 featured: true
+thumbnail: assets/img/Gemini_Generated_Image_1.png
 giscus_comments: true
 _styles: >
     pre {
