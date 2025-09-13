@@ -10,8 +10,6 @@ related_publications: true
 giscus_comments: true
 thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
-authors:
-  - name: Luiz Eugenio
 ---
 # Back-end Formulation
 $$
@@ -55,6 +53,7 @@ $$
 $$
 
 Substituting the linearized error into the $\chi^2$ cost function, we get a quadratic approximation of the error around $\xk$:
+
 $$
 \begin{align}
 \chi^2(\xkk) &\approx \sum_{e_j \in \mathcal{E}} (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk)^\top \Omega_j (\mathbf{e}_j(\xk) + \mathbf{J}_j \Delta \xk) \newline
