@@ -11,12 +11,15 @@ giscus_comments: true
 thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
 authors:
-  - name: Albert Einstein
+  - name: Luiz Eugenio
+  - affiliations:
+      name: ITA
 toc:
-  - name: Equations
+  - name: Back-end Formulation
+  - name: Front-end Formulation
 ---
 
-# Back-end Formulation
+## Back-end Formulation
 
 $$
 \newcommand\x{\mathbf{x}}
@@ -141,3 +144,9 @@ $$\Omega_{\text{lc}}$$
 is the loop closure information matrix, $\Phi$ is a parameter defining the influence of the down-rate and $\chi_{\text{lc}}^2$ is the original term for the loop closure constraint.
 
 Other robust functions such as the Cauchy, Tukey, and Welsh kernels also exist, each offering a different non-convex strategy for down-weighting outliers. The choice of kernel is ultimately a trade-off between the desired level of robustness to extreme outliers and the stability of the optimization process. While non-convex kernels can offer better performance in the presence of severe outliers, convex options such as Huber are often preferred for their reliability and predictable behavior. Experiments show that robust kernels dramatically improve accuracy when initial estimates are poor or when data contains incorrect constraints <d-cite key="lin2021analysis"></d-cite>.
+
+---
+
+## Front-end Formulation
+
+---
