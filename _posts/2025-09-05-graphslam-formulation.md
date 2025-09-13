@@ -10,9 +10,8 @@ related_publications: true
 giscus_comments: true
 thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
-toc:
-  - name: Back-end Formulation
-  - name: Front-end Formulation (coming soon)
+authors:
+  - name: Luiz Eugenio
 ---
 # Back-end Formulation
 $$
