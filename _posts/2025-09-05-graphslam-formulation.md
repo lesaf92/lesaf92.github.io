@@ -12,14 +12,7 @@ thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
 ---
 # Back-end Formulation
-$$
-\newcommand\x{\mathbf{x}}
-\newcommand\xk{\mathbf{x}_k}
-\newcommand\xkk{\mathbf{x}_{k+1}}
-\newcommand\Hessian{\mathbf{H}}
-\newcommand\I{\mathbf{I}}
-\newcommand\e{\mathbf{e}}
-$$
+
 In the context of SLAM, we aim to estimate the optimal poses of a robot and the locations of landmarks by minimizing the error between sensor measurements and their predicted values <d-cite key="grisetti2010tutorial"></d-cite>. The optimization seeks to find the configuration of robot poses and landmark locations that minimizes the sum of the squared errors.
 
 Formally, consider a system with:
