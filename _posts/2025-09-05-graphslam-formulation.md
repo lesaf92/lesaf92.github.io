@@ -10,7 +10,11 @@ related_publications: true
 giscus_comments: true
 thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
+toc:
+  - name: Back-end Formulation
+  - name: Front-end Formulation (coming soon)
 ---
+# Back-end Formulation
 $$
 \newcommand\x{\mathbf{x}}
 \newcommand\xk{\mathbf{x}_k}
