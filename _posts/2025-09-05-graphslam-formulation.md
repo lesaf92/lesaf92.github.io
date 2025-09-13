@@ -12,7 +12,7 @@ thumbnail: assets/img/robust_cost_graph.png
 bibliography: references.bib
 authors:
   - name: Luiz Eugenio
-  - affiliations:
+    affiliations:
       name: Instituto Tecnológico de Aeronáutica
 toc:
   - name: Introduction
@@ -112,9 +112,9 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization <d-cite key="mactavish2015robustkernels"></d-cite>. The g2o framework provides several such kernels, each with different properties, as shown in the figure below:
 
-<div class="l-body">
-    {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-</div>
+
+{% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 
 The Huber kernel is one of the most widely used robust functions. It behaves quadratically for small errors but switches to a linear function at a threshold $b$ for large errors, which prevents the error $e$ from being squared and amplified. Its formal definition is:
 \begin{align}
