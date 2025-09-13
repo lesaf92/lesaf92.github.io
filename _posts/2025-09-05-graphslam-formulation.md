@@ -13,13 +13,14 @@ bibliography: references.bib
 authors:
   - name: Luiz Eugenio
   - affiliations:
-      name: ITA
+      name: Instituto Tecnológico de Aeronáutica
 toc:
+  - name: Introduction
   - name: Back-end Formulation
   - name: Front-end Formulation
 ---
 
-## Back-end Formulation
+## Introduction
 
 $$
 \newcommand\x{\mathbf{x}}
@@ -44,6 +45,8 @@ Our goal is to find the set of robot poses $\x = \begin{bmatrix} \x_1, \x_2, \do
 \begin{align}
     \chi^2(\x) = \sum_{e_j \in \mathcal{E}} \mathbf{e}_j(\x)^\top \Omega_j \mathbf{e}_j(\x).
 \end{align}
+
+## Back-end Formulation
 
 This optimization problem is typically non-linear and is solved iteratively using techniques such as Gauss-Newton (GN), Levenberg-Marquardt (LM) <d-cite key="levenberg1944method"></d-cite>, Powell’s dogleg (PDL) <d-cite key="powell1970pdl"></d-cite> or Graduated Non-Convexity (GNC) <d-cite key="yang2020gnc"></d-cite>. Let $\xk$ be the estimate of the state vector at iteration $k$. We seek an update $\Delta \xk$ such that the updated state $\xkk = \xk \boxplus \Delta \xk$ leads to a lower $\chi^2$ value.
 
@@ -109,10 +112,8 @@ The g2o framework provides several robust kernels, with the Huber kernel being o
 
 This function is designed to down-weight the influence of constraints with large errors, preventing them from corrupting the optimization <d-cite key="mactavish2015robustkernels"></d-cite>. The g2o framework provides several such kernels, each with different properties, as shown in the figure below:
 
-<div class="row mt-3">
-  <div class="col-sm-3 mt-3 mt-md-0 text-center">
-      {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
-  </div>
+<div class="l-body">
+    {% include figure.liquid loading="eager" path="assets/img/robust_cost_graph.png" class="img-fluid rounded z-depth-1" zoomable=true %}
 </div>
 
 The Huber kernel is one of the most widely used robust functions. It behaves quadratically for small errors but switches to a linear function at a threshold $b$ for large errors, which prevents the error $e$ from being squared and amplified. Its formal definition is:
@@ -149,4 +150,4 @@ Other robust functions such as the Cauchy, Tukey, and Welsh kernels also exist, 
 
 ## Front-end Formulation
 
----
+Coming soon...
