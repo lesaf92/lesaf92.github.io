@@ -13,9 +13,10 @@ As a musician, I often found myself wanting to quickly practice a song without g
 
 This led me to create the [**CifraClub Simplifier**](https://github.com/lesaf92/cc_for_dummies), a web application built to solve this exact problem.
 
-
-
 The tool allows a user to paste any guitar tab URL from CifraClub, and it intelligently scrapes the page, removes all tablature, and presents a clean, readable version of the song. This creates a distraction-free view perfect for learning, practicing, or a casual sing-along.
+
+{% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/cc_for_dummies/main/cc_for_dummies_page_screenshot.png" title="screenshot" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 
 ### Key Features
 
@@ -32,5 +33,7 @@ The application is powered by a Python **Flask** backend that handles the web sc
 
 This project was a fantastic exercise in combining backend logic with a user-focused frontend. It solved a personal problem and gave me valuable experience in web scraping, application deployment, and creating practical tools.
 
-**You can try the live application here:** [**cifraclub.lesaf.cc**](https://cifraclub.lesaf.cc)
+### Running the app
+- Link to the app: [**cifraclub.lesaf.cc**](https://cifraclub.lesaf.cc)
+- Link to the repo: [**github.com**](https://github.com/lesaf92/cc_for_dummies)
 ---

@@ -2,24 +2,14 @@
 layout: page
 title: Dota 2 Tournament Simulator
 description: A tournament simulator with match prediction capabilities powered by AI.
-img: https://raw.githubusercontent.com/lesaf92/cc_for_dummies/main/cc_for_dummies_page_screenshot.png
+img: https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/assets/dota2_tournament_screenshot.png
 importance: 1
 category: webapp
 related_publications: false
 giscus_comments: true
 ---
 
-# Dota 2 Tournament Simulator & Match Predictor
-
 A full-stack web application that simulates an 8-team, double-elimination Dota 2 tournament. Match outcomes are predicted by a neural network trained on historical data using multiple advanced rating systems.
-
-
-
-{% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/static/aegis.png" title="aegis" class="img-fluid rounded z-depth-1" zoomable=true %}
-
------
-
-### Project Overview
 
 This project provides an end-to-end pipeline for predicting Dota 2 match outcomes. It includes scripts to:
 
@@ -28,7 +18,8 @@ This project provides an end-to-end pipeline for predicting Dota 2 match outcome
 3.  **Train a Model**: Train a PyTorch neural network on the generated dataset to predict win probabilities.
 4.  **Simulate a Tournament**: A Flask-based web application provides a Liquidpedia-style bracket interface where users can select 8 teams and run a full tournament simulation based on the model's predictions.
 
------
+{% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/assets/dota2_tournament_screenshot.png" title="aegis" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 
 ### Features
 
@@ -37,8 +28,6 @@ This project provides an end-to-end pipeline for predicting Dota 2 match outcome
   - **Neural Network Prediction**: Uses a PyTorch model to predict match outcomes based on rating differences.
   - **Interactive Web Interface**: A sleek, Liquipedia-inspired tournament bracket built with Flask, HTML, CSS, and JavaScript.
   - **Full Tournament Simulation**: Simulates a complete 8-team, double-elimination bracket, including upper and lower brackets, to determine a champion.
-
------
 
 ### Understanding the Rating Systems
 
@@ -66,3 +55,9 @@ Glicko-2 tracks three values for each team:
 3.  **Rating Volatility (σ)**: This measures the consistency of a team's performance over time. A team with surprisingly erratic results (e.g., beating strong teams but losing to weak ones) will have a high volatility, which causes their RD to increase more quickly.
 
 In essence, Glicko-2 provides a much more nuanced view of skill by not only estimating a team's strength but also how *reliable* that estimation is.
+
+### Running the app
+- Link to the app: [**dota2.lesaf.cc**](https://dota2.lesaf.cc)
+- Link to the repo: [**github.com**](https://github.com/lesaf92/dota2_tournament_sim)
+
+---
