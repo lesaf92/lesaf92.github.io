@@ -13,6 +13,10 @@ giscus_comments: true
 
 A full-stack web application that simulates an 8-team, double-elimination Dota 2 tournament. Match outcomes are predicted by a neural network trained on historical data using multiple advanced rating systems.
 
+
+
+{% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/static/aegis.png" title="aegis" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 -----
 
 ### Project Overview
