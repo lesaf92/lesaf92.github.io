@@ -58,7 +58,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/repositories/";
               },
-            },{id: "post-meatballs-no",
+            },{id: "post-understanding-rating-systems",
+        
+          title: "Understanding Rating Systems",
+        
+        description: "Elo, Glicko, and Glicko-2 Explained",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/game-rating-systems/";
+          
+        },
+      },{id: "post-meatballs-no",
         
           title: "Meatballs, no!",
         
@@ -491,9 +502,9 @@ ninja.data = [{
           description: "A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/cifraclub_simplifier/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
+            },},{id: "projects-dota-2-tournament-simulator",
+          title: 'Dota 2 Tournament Simulator',
+          description: "A tournament simulator with match prediction capabilities powered by AI.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/dota2_tournament_sim/";
             },},{
