@@ -8,11 +8,6 @@ profile:
   align: right
   image: prof_pic.jpg
   image_circular: false # crops the image to make it circular
-  more_info: >
-    <p>Praça Marechal Eduardo Gomes, 50
-    <p>Instituto Tecnológico de Aeronáutica</p>
-    <p>Sala 1218</p>
-    <p>SJC, SP, Brazil</p>
 
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
