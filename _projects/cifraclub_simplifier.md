@@ -2,7 +2,7 @@
 layout: page
 title: CifraClub Simplifier
 description: A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.
-img: assets/img/cc_for_dummies_page_screenshot.png
+img: https://raw.githubusercontent.com/lesaf92/cc_for_dummies/main/cc_for_dummies_page_screenshot.png
 importance: 1
 category: webapp
 related_publications: false
