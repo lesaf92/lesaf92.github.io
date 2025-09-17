@@ -451,17 +451,7 @@ ninja.data = [{
             },},{id: "news-started-updating-this-site-seems-easy-sunglasses",
           title: 'Started updating this site, seems easy :sunglasses:',
           description: "",
-          section: "News",},{id: "projects-cifraclub-simplifier",
-          title: 'CifraClub Simplifier',
-          description: "A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
+          section: "News",},{id: "projects-project-3-with-very-long-name",
           title: 'project 3 with very long name',
           description: "a project that redirects to another website",
           section: "Projects",handler: () => {
@@ -496,6 +486,16 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-cifraclub-simplifier",
+          title: 'CifraClub Simplifier',
+          description: "A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/cifraclub_simplifier/";
+            },},{id: "projects-project-2",
+          title: 'project 2',
+          description: "a project with a background image and giscus comments",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/dota2_tournament_sim/";
             },},{
         id: 'social-email',
         title: 'email',
