@@ -20,7 +20,6 @@ This project provides an end-to-end pipeline for predicting Dota 2 match outcome
 
 {% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/assets/dota2_tournament_screenshot.png" title="aegis" class="img-fluid rounded z-depth-1" zoomable=true %}
 
-
 ### Features
 
   - **Automated Data Pipeline**: A bash script automates the entire setup process.
@@ -55,6 +54,10 @@ Glicko-2 tracks three values for each team:
 3.  **Rating Volatility (σ)**: This measures the consistency of a team's performance over time. A team with surprisingly erratic results (e.g., beating strong teams but losing to weak ones) will have a high volatility, which causes their RD to increase more quickly.
 
 In essence, Glicko-2 provides a much more nuanced view of skill by not only estimating a team's strength but also how *reliable* that estimation is.
+
+### The AI used
+
+{% include figure.liquid loading="eager" path="https://raw.githubusercontent.com/lesaf92/dota2_tournament_sim/main/assets/nn.svg" title="nn" class="img-fluid rounded z-depth-1" zoomable=true %}
 
 ### Running the app
 - Link to the app: [**dota2.lesaf.cc**](https://dota2.lesaf.cc)
