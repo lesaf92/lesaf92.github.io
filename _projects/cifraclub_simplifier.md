@@ -36,4 +36,5 @@ This project was a fantastic exercise in combining backend logic with a user-foc
 ### Running the app
 - Link to the app: [**cifraclub.lesaf.cc**](https://cifraclub.lesaf.cc)
 - Link to the repo: [**github.com**](https://github.com/lesaf92/cc_for_dummies)
+
 ---
