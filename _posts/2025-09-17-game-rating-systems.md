@@ -104,6 +104,64 @@ Glicko shines in online environments with irregular play. It's used on chess pla
 
 Elo is simple and effective for consistent competitors but ignores uncertainty. Glicko adds RD for better handling of inactivity, while Glicko-2's volatility makes it ideal for volatile performances. In practice, Elo suits stable environments like professional chess, whereas Glicko variants excel in dynamic online games.
 
+Rating Systems in Dota 2 – Player MMR and Team Rankings
+
+While the core principles of Elo, Glicko, and Glicko-2 provide a universal framework for skill assessment, their adaptations in specific games like Dota 2 highlight how these systems evolve to meet the demands of massive multiplayer online battle arena (MOBA) environments. Dota 2, developed by Valve, has undergone significant changes to its matchmaking rating (MMR) system over the years, balancing competitive integrity, player retention, and computational efficiency. This appendix explores how Dota 2 has implemented (and iterated on) these systems for individual players and professional teams, drawing from historical transitions up to the current landscape in September 2025. We'll focus on MMR evolution for players and third-party team rankings, as Valve does not maintain an official team MMR.
+
+### Player MMR: From Elo-Like Foundations to Glicko-Driven Matchmaking
+
+Dota 2's matchmaking system, which pairs players for fair games, has always been inspired by Elo's zero-sum transfer of points based on expected vs. actual outcomes. Early iterations (pre-2013) used a basic Elo variant, where MMR was a hidden integer value starting around 1500, adjusted by a fixed amount per win/loss (typically ±25 MMR). This mirrored the Elo update equation:
+
+$$
+R' = R + K (S - E)
+$$
+
+with K often fixed at 32–40, leading to issues like MMR deflation (ratings drifting downward over time due to inconsistent play) and poor handling of new or inactive players.
+
+By 2023, with Patch 7.33, Valve overhauled the system to adopt Glicko, a more sophisticated Bayesian approach that incorporates rating deviation (RD) to account for uncertainty. This shift addressed Elo's limitations, such as over-penalizing streaks or failing to adjust for inactivity. Glicko estimates not just a player's rating (μ) but also its reliability via RD (φ), which widens with fewer games, reducing the impact of outliers. The expected score E now factors in RD:
+
+$$
+E = \frac{1}{\sqrt{1 + 3 q^2 \phi^2 / \pi^2}} \cdot \frac{1}{1 + 10^{(r_j - r_i)/400}}
+$$
+
+where q = ln(10)/400, and the g(φ) term dampens predictions for uncertain ratings. Post-match updates use a variance-weighted adjustment, converging faster for active players while stabilizing veterans.
+
+As of September 2025, Dota 2's player MMR remains Glicko-based, integrated into a seasonal ranking structure introduced in 2024. Seasons reset medals (e.g., Herald to Immortal) but preserve hidden MMR, with visible tiers like:
+
+| Tier     | MMR Range (Season 6, Aug 2025) |
+|----------|--------------------------------|
+| Herald   | 1–769                         |
+| Guardian | 770–1539                      |
+| Crusader | 1540–2309                     |
+| Archon   | 2310–3079                     |
+| Legend   | 3080–3849                     |
+| Ancient  | 3850–4619                     |
+| Divine   | 4620–5389                     |
+| Immortal | 5390+                         |
+
+Wins grant 20–30+ MMR (factoring behavior score and party size), while losses deduct similarly, modulated by RD for "confidence" in the rating—low-confidence players see smaller swings. This prevents smurfing and rewards consistency, with ~1% of players in Immortal. Glicko also enables "calibration" matches for new accounts (10 games to set initial RD). Unlike full Glicko-2, Dota 2 omits explicit volatility (σ) to simplify for 10 million+ monthly users, though it implicitly handles variance through match history weighting.
+
+The evolution has improved matchmaking quality: Pre-Glicko, MMR inflation/deflation skewed queues; now, RD ensures balanced games even for returning players. Community feedback in 2025 praises the system's fairness, though debates persist on party MMR penalties.
+
+### Team Rankings: Glicko-2 in Professional Dota 2 via datDota
+
+For professional teams, Valve relies on community tools like datDota for Glicko-2 ratings, as official MMR is player-centric. datDota, a leading analytics site, applies Glicko-2 to aggregate team performance from ~100,000 pro matches, treating teams as entities with shared volatility. This extends the player model by averaging individual MMRs and factoring series outcomes (Bo3/Bo5), incorporating RD for roster changes and meta shifts.
+
+Glicko-2's volatility (σ) is key here: It models how a team's strength fluctuates with patches (e.g., 7.37 in early 2025 buffed carries, spiking underdog wins). Updates use the full formula:
+
+$$
+\Delta = v \sum g(\phi_j) (s_j - E)
+$$
+
+followed by σ and φ recalibration, with a rolling 6–12 month window for relevance. As of mid-2025, top teams like Team Falcons (1985+ Glicko-2) reflect post-TI dominance, with the event's average rating hitting a record 1935.5—making it the "toughest LAN ever."
+
+These ratings inform bracket predictions, seeding, and betting, outperforming Elo in volatile metas. datDota's variants (Glicko-1, Elo-32/64) allow comparisons, but Glicko-2 is the gold standard for pros.
+
+### Why These Systems Matter in Dota 2
+
+Dota 2's adoption of Glicko for players and Glicko-2 for teams exemplifies iterative refinement: Elo provided the base, but uncertainty modeling via RD and σ ensures resilience against the game's 120+ heroes, patches, and team dynamics. As of 2025, no major overhauls are announced, but seasonal tweaks continue to refine confidence intervals. For aspiring analysts or our Dota 2 prediction project, these systems form the backbone—feeding features like rating diffs into neural nets for ~65% accurate win probs.
+
+
 ## References
 
 - [Elo Rating System - Wikipedia](https://en.wikipedia.org/wiki/Elo_rating_system)
@@ -121,3 +179,17 @@ Elo is simple and effective for consistent competitors but ignores uncertainty. 
 - [Rating Sports Teams - Maximizing A Generic System](https://towardsdatascience.com/rating-sports-teams-maximizing-a-generic-system-772144574a07/)
 - [Glicko-2 Rating System: Bug or exploit?](https://chess.stackexchange.com/questions/1260/glicko-2-rating-system-bug-or-exploit)
 - [Abstracting Glicko-2 for Team Games](https://rhetoricstudios.com/downloads/AbstractingGlicko2ForTeamGames.pdf)
+- [Dota 2 Ranks: MMR, Medals and Ranking - Hawk Live](https://hawk.live/posts/dota-2-ranks-mmr-seasonal-medals-ranking)
+- [Dota 2 Ranking System Updated - BoostRoyal](https://boostroyal.com/blog/dota-2-ranking-system-updated/)
+- [Dota 2 Rank distribution and Medals in August 2025 | Esports Tales](https://www.esportstales.com/dota-2/seasonal-rank-distribution-and-mmr-medals)
+- [Dota 2 ranks explained: Complete MMR & tier breakdown](https://esportsinsider.com/dota-2-ranks)
+- [[Concept] Revamped Dota 2 Ranking System + New MMR Gain ... - Reddit](https://www.reddit.com/r/DotA2/comments/1kvrmfd/concept_revamped_dota_2_ranking_system_new_mmr/)
+- [Dota 2 Rank MMR 2025: Tiers, Gaps & How to Climb](https://pickem-mongolia.com/news/dota-2-rank-mmr-in-2025/)
+- [Dota 2 Ranks, MMR, and ranking system explained - Dot Esports](https://dotesports.com/dota-2/news/dota-2-mmr-and-ranking-system-explained)
+- [With a Glicko 2 rating of 1935.5, TI 2025 is poised to the toughest ... - Facebook](https://www.facebook.com/wykrhmreddy/posts/with-a-glicko-2-rating-of-19355-ti-2025-is-poised-to-the-toughest-lan-in-the-his/1248798486599093/)
+- [MMR in Dota 2 what has changed in 2025 - Ensigame](https://ensigame.com/articles/dota-2/everything-you-need-to-know-about-dota-2-rankings-and-the-mmr-system)
+- [Dota 2 Rank Confidence Update - Glicko Rating System 2024](https://immortalboost.com/blog/dota-2/rank-confidence-glicko-ranking-system/)
+- [Top Rated Teams by Glicko 2 Rating - datDota](https://www.datdota.com/ratings/top?type=glicko2)
+- [This TI will be the highest avg (Glicko 2) rating team event of all time. - Reddit](https://www.reddit.com/r/DotA2/comments/1ldzn4g/this_ti_will_be_the_highest_avg_glicko_2_rating/)
+- [Dota 2 Team Rankings and Leaderboards 2025 - GosuGamers](https://www.gosugamers.net/dota2/rankings)
+- [Top Rated Teams by Glicko 1 Rating - datDota](http://95.217.117.58:8080/ratings/top?type=glicko)
