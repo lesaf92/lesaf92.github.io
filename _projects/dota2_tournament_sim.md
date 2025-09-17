@@ -1,81 +1,64 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
-importance: 2
-category: work
+title: Dota 2 Tournament Simulator
+description: A tournament simulator with match prediction capabilities powered by AI.
+img: https://raw.githubusercontent.com/lesaf92/cc_for_dummies/main/cc_for_dummies_page_screenshot.png
+importance: 1
+category: webapp
+related_publications: false
 giscus_comments: true
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
+# Dota 2 Tournament Simulator & Match Predictor
 
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
+A full-stack web application that simulates an 8-team, double-elimination Dota 2 tournament. Match outcomes are predicted by a neural network trained on historical data using multiple advanced rating systems.
 
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+-----
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
+### Project Overview
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+This project provides an end-to-end pipeline for predicting Dota 2 match outcomes. It includes scripts to:
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
+1.  **Gather Data**: Fetch thousands of professional match results from the OpenDota API.
+2.  **Calculate Historical Ratings**: Process matches chronologically to compute multiple historical skill ratings for each team.
+3.  **Train a Model**: Train a PyTorch neural network on the generated dataset to predict win probabilities.
+4.  **Simulate a Tournament**: A Flask-based web application provides a Liquidpedia-style bracket interface where users can select 8 teams and run a full tournament simulation based on the model's predictions.
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+-----
 
-{% raw %}
+### Features
 
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
+  - **Automated Data Pipeline**: A bash script automates the entire setup process.
+  - **Historical Rating Engine**: Implements Elo (with variable K-factors) and a custom Glicko-2 engine from scratch.
+  - **Neural Network Prediction**: Uses a PyTorch model to predict match outcomes based on rating differences.
+  - **Interactive Web Interface**: A sleek, Liquipedia-inspired tournament bracket built with Flask, HTML, CSS, and JavaScript.
+  - **Full Tournament Simulation**: Simulates a complete 8-team, double-elimination bracket, including upper and lower brackets, to determine a champion.
 
-{% endraw %}
+-----
+
+### Understanding the Rating Systems
+
+A key feature of this project is its use of robust rating systems to quantify team skill. Here’s how they work.
+
+#### **The Elo Rating System**
+
+The [**Elo system**](https://en.wikipedia.org/wiki/Elo_rating_system) is the foundation of many competitive rating systems, originally designed for chess. Its goal is to calculate the relative skill level of players in a zero-sum game.
+
+  * **Core Concept**: Each team has a rating number. When two teams play, the winner takes points from the loser. The number of points exchanged depends on the difference in their ratings.
+  * **Expected Outcome**: If a high-rated team beats a low-rated team, only a few points are exchanged, as this was the expected outcome. However, if the low-rated team causes an upset, it will gain a large number of points.
+  * **The K-Factor**: The maximum number of points that can be exchanged is determined by a value called the **K-factor**.
+      * A **low K-factor** (like `k=32`, used in this project) leads to smaller, more stable rating changes.
+      * A **high K-factor** (like `k=64`) makes the ratings more volatile and responsive to recent results.
+        This project calculates both `Elo32` and `Elo64` to feed the model a richer set of features.
+
+#### **The Glicko-2 Rating System**
+
+Developed by Professor Mark Glickman, [**Glicko-2**](https://en.wikipedia.org/wiki/Glicko_rating_system) is a significant improvement upon the Elo system because it introduces the concept of **rating uncertainty**. It acknowledges that we can be more or less confident in a team's rating.
+
+Glicko-2 tracks three values for each team:
+
+1.  **Rating (μ)**: This is the skill rating, similar to Elo. It's the system's best guess of a team's strength.
+2.  **Rating Deviation (RD or φ)**: This is the measure of uncertainty. An RD is like a margin of error: a low RD means we are very confident in the team's rating (e.g., a veteran team that plays often), while a high RD means the rating is less reliable (e.g., a new team or a team that hasn't played in a long time). **A team with a high RD will see its rating change much more drastically after a match.**
+3.  **Rating Volatility (σ)**: This measures the consistency of a team's performance over time. A team with surprisingly erratic results (e.g., beating strong teams but losing to weak ones) will have a high volatility, which causes their RD to increase more quickly.
+
+In essence, Glicko-2 provides a much more nuanced view of skill by not only estimating a team's strength but also how *reliable* that estimation is.

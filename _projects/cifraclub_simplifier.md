@@ -6,6 +6,7 @@ img: https://raw.githubusercontent.com/lesaf92/cc_for_dummies/main/cc_for_dummie
 importance: 1
 category: webapp
 related_publications: false
+giscus_comments: true
 ---
 
 As a musician, I often found myself wanting to quickly practice a song without getting bogged down by complex tablature for solos or intricate riffs. While sites like CifraClub are incredible resources, I needed a way to distill the content down to its core: the chords and the lyrics.
