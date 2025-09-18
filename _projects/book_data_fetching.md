@@ -24,5 +24,5 @@ _styles: >
 
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
-<div id="results"> </div>
-<pre id="output"> </pre>
+<div id="results">a</div>
+<pre id="output">a</pre>
