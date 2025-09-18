@@ -4,7 +4,7 @@ title: Book Extractor tool
 description: A tool to easily add books in this website.
 img: https://openlibrary.org/static/images/openlibrary-logo-tighter.svg
 importance: 1
-category: webapp
+category: tools
 related_publications: false
 giscus_comments: true
 _scripts: assets/js/book_extractor.js
@@ -24,5 +24,5 @@ _styles: >
 
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
-<div id="results">a</div>
-<pre id="output">a</pre>
+<div id="results">&nbsp;</div>
+<pre id="output">&nbsp;</pre>
