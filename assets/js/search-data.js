@@ -447,7 +447,12 @@ ninja.data = [{
             window.location.href = "/blog/2015/formatting-and-links/";
           
         },
-      },{id: "books-the-lord-of-the-rings",
+      },{id: "books-aided-navigation-gps-with-high-rate-sensors",
+          title: 'Aided navigation GPS with high rate sensors',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/farrel_book/";
+            },},{id: "books-the-lord-of-the-rings",
           title: 'The Lord of the Rings',
           description: "",
           section: "Books",handler: () => {
