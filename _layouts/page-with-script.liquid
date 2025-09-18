@@ -11,7 +11,7 @@ layout: default
 {% if page._scripts %}
   <!-- Link a js file in assets/js/ here -->
   <style type="text/javascript">
-    {{ page._scripts }}
+    {% include page._scripts %}
   </style>
 {% endif %}
 
