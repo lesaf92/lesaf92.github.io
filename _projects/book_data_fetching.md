@@ -4,7 +4,7 @@ title: Book extractor tool
 description: A tool to easily add books in this website.
 img: https://openlibrary.org/static/images/openlibrary-logo-tighter.svg
 importance: 1
-category: tool
+category: webapp
 related_publications: false
 giscus_comments: true
 _scripts_: /assets/js/book_extractor.js
