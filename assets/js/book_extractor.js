@@ -23,7 +23,7 @@ async function searchBooks() {
             const div = document.createElement('div');
             const author = book.author_name ? book.author_name.join(', ') : 'Unknown';
             const year = book.first_publish_year || 'Unknown';
-            div.innerHTML = `<b>${book.title}</b> by ${author} (${year}) <button onclick="generateOutput('${book.key}', '${encodeURIComponent(JSON.stringify(book))}')">Select</button>`;
+            div.innerHTML = `${book.title} by ${author} (${year}) <button onclick="generateOutput('${book.key}', '${encodeURIComponent(JSON.stringify(book))}')">Select</button>`;
             resultsDiv.appendChild(div);
         });
     } catch (error) {

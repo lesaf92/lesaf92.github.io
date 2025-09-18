@@ -19,8 +19,8 @@ _styles: >
 ---
 {% include figure.liquid loading="eager" path="https://openlibrary.org/static/images/openlibrary-logo-tighter.svg" title="openlibrary" class="img-fluid rounded z-depth-1" zoomable=true %}
 
-Enter a book title or author into the search box below. Select the correct book from the results (here hardcoded to 20 entries) to generate the formatted output at the bottom of the page.
-If the cover is not placed after the book is added to the website, check another entry, you probably chose the one the bots added to the database without a cover 😕.
+<p>Enter a book title or author into the search box below. Select the correct book from the results (here hardcoded to 20 entries) to generate the formatted output at the bottom of the page.</p>
+<p>If the cover is not placed after the book is added to the website, check another entry, you probably chose the one the bots added to the database without a cover 😕.</p>
 
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
