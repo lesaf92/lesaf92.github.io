@@ -462,6 +462,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/probabilistic_robotics/";
+            },},{id: "books-reinforcement-learning",
+          title: 'Reinforcement learning',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/sutton_book/";
             },},{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
