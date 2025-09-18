@@ -51,13 +51,6 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "dropdown-repositories",
-              title: "repositories",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "/repositories/";
-              },
             },{id: "post-understanding-rating-systems",
         
           title: "Understanding Rating Systems",
