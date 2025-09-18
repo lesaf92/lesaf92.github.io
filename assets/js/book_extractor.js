@@ -67,33 +67,6 @@ async function generateOutput(workKey, encodedBook) {
         const title = book.title || 'Unknown';
 
         // Amazon buy link
-        // const workUrl = `https://openlibrary.org${workKey}.json`;
-        // const editionUrl = `https://openlibrary.org/books/${editionKey}.json`;
-
-        // For scraping the Amazon link, we need a proxy to avoid browser CORS errors
-        // const proxyUrl = 'https://api.allorigins.win/raw?url=';
-        // const bookPageUrl = `https://openlibrary.org/books/${editionKey}`;
-        //
-        // const [workResponse, editionResponse, pageResponse] = await Promise.all([
-        //     fetch(workUrl),
-        //     fetch(editionUrl),
-        //     fetch(proxyUrl + encodeURIComponent(bookPageUrl))
-        // ]);
-        //
-        // if (!workResponse.ok || !editionResponse.ok) throw new Error('Could not fetch book data from API.');
-        // if (!pageResponse.ok) console.warn('Could not fetch book page for scraping, Amazon link may be a fallback.');
-        //
-        // const workData = await workResponse.json();
-        // const editionData = await editionResponse.json();
-        // const pageHtml = await pageResponse.text();
-        //
-        // const parser = new DOMParser();
-        // const doc = parser.parseFromString(pageHtml, 'text/html');
-        // const amazonLinkEl = doc.querySelector('.prices-amazon a');
-        // let amazonLink = `https://www.amazon.com/s?k=${encodeURIComponent(`${title} ${author}`)}`; // Fallback
-        // if(amazonLinkEl && amazonLinkEl.href) {
-        //     amazonLink = amazonLinkEl.href;
-        // }
         const amazonLink = `https://www.amazon.com/s?k=${encodeURIComponent(`${title} ${author}`)}`;
 
         // For the start and finished dates

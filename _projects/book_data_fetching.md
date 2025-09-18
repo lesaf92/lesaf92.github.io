@@ -24,5 +24,5 @@ If the cover is not placed after the book is added to the website, check another
 
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
-<div id="results"></div>
-<pre id="output"></pre>
+<div id="results"> </div>
+<pre id="output"> </pre>
