@@ -9,7 +9,7 @@ async function searchBooks() {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const searchUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=key,title,author_name,first_publish_year,subject,edition_key,ratings_average,ratings_count,want_to_read_count&limit=20`;
+        const searchUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=key,title,author_name,first_publish_year,subject,edition_key&limit=10`;
         const response = await fetch(searchUrl);
         const data = await response.json();
 
@@ -23,7 +23,7 @@ async function searchBooks() {
             const div = document.createElement('div');
             const author = book.author_name ? book.author_name.join(', ') : 'Unknown';
             const year = book.first_publish_year || 'Unknown';
-            div.innerHTML = `<strong>${book.title}</strong> by ${author} (${year}) <button onclick="generateOutput('${book.key}', '${encodeURIComponent(JSON.stringify(book))}')">Select</button>`;
+            div.innerHTML = `<b>${book.title}</b> by ${author} (${year}) <button onclick="generateOutput('${book.key}', '${encodeURIComponent(JSON.stringify(book))}')">Select</button>`;
             resultsDiv.appendChild(div);
         });
     } catch (error) {
