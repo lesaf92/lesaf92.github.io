@@ -7,7 +7,7 @@ importance: 1
 category: webapp
 related_publications: false
 giscus_comments: true
-_scripts_: /assets/js/book_extractor.js
+_scripts: /assets/js/book_extractor.js
 _styles: >
     body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
     input { width: 100%; padding: 10px; margin-bottom: 10px; }
