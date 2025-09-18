@@ -455,12 +455,7 @@ ninja.data = [{
             },},{id: "news-started-updating-this-site-seems-easy-sunglasses",
           title: 'Started updating this site, seems easy :sunglasses:',
           description: "",
-          section: "News",},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
-          section: "Projects",handler: () => {
-              window.location.href = "/projects/3_project/";
-            },},{id: "projects-project-4",
+          section: "News",},{id: "projects-project-4",
           title: 'project 4',
           description: "another without an image",
           section: "Projects",handler: () => {
@@ -490,6 +485,11 @@ ninja.data = [{
           description: "another project with an image 🎉",
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
+            },},{id: "projects-book-extractor-tool",
+          title: 'Book extractor tool',
+          description: "A tool to easily add books in this website.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/book_data_fetching/";
             },},{id: "projects-cifraclub-simplifier",
           title: 'CifraClub Simplifier',
           description: "A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.",
