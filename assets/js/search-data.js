@@ -448,7 +448,7 @@ ninja.data = [{
           
         },
       },{id: "books-probabilistic-robotics",
-          title: 'Probabilistic robotics',
+          title: 'Probabilistic Robotics',
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/probabilistic_robotics/";
@@ -491,7 +491,7 @@ ninja.data = [{
           section: "Projects",handler: () => {
               window.location.href = "/projects/9_project/";
             },},{id: "projects-book-extractor-tool",
-          title: 'Book extractor tool',
+          title: 'Book Extractor tool',
           description: "A tool to easily add books in this website.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/book_data_fetching/";
