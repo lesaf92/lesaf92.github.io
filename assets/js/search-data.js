@@ -447,7 +447,12 @@ ninja.data = [{
             window.location.href = "/blog/2015/formatting-and-links/";
           
         },
-      },{id: "books-probabilistic-robotics",
+      },{id: "books-the-lord-of-the-rings",
+          title: 'The Lord of the Rings',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/lord_of_the_rings/";
+            },},{id: "books-probabilistic-robotics",
           title: 'Probabilistic Robotics',
           description: "",
           section: "Books",handler: () => {
