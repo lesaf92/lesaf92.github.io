@@ -1,6 +1,6 @@
 ---
 layout: page-with-script
-title: Book extractor tool
+title: Book Extractor tool
 description: A tool to easily add books in this website.
 img: https://openlibrary.org/static/images/openlibrary-logo-tighter.svg
 importance: 1
@@ -20,8 +20,10 @@ _styles: >
 
 Ok, let's see what this does. Here is the body part in HTML:
 
-<p>Enter a book title or author into the search box below. Select the correct book from the results to generate the formatted output.</p>
+Enter a book title or author into the search box below. Select the correct book from the results (here hardcoded to 20 entries) to generate the formatted output at the bottom of the page.
+If the cover is not placed after the book is added to the website, check another entry, you probably chose the one the bots added to the database without a cover 😕.
+
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
-<div id="results">Div aqui</div>
-<pre id="output">Pre Aqui</pre>
+<div id="results"></div>
+<pre id="output"></pre>

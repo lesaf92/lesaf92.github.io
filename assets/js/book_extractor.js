@@ -9,7 +9,7 @@ async function searchBooks() {
     resultsDiv.innerHTML = 'Loading...';
 
     try {
-        const searchUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=key,title,author_name,first_publish_year,subject,edition_key,ratings_average,ratings_count,want_to_read_count&limit=10`;
+        const searchUrl = `https://openlibrary.org/search.json?q=${encodeURIComponent(query)}&fields=key,title,author_name,first_publish_year,subject,edition_key,ratings_average,ratings_count,want_to_read_count&limit=20`;
         const response = await fetch(searchUrl);
         const data = await response.json();
 
@@ -60,12 +60,6 @@ async function generateOutput(workKey, encodedBook) {
         // Released
         const released = book.first_publish_year || '';
 
-        // Stars
-        const stars = book.ratings_average ? book.ratings_average.toFixed(1) : '4.0';
-
-        // Review count: Use ratings_count if available, else want_to_read_count
-        const reviewCount = book.ratings_count || book.want_to_read_count || 0;
-
         // Author
         const author = book.author_name ? book.author_name.join(', ') : 'Unknown';
 
@@ -107,20 +101,19 @@ async function generateOutput(workKey, encodedBook) {
 
         // Formatted output
         const formattedOutput = `---
-    layout: book-review
-    title: ${title}
-    author: ${author}
-    olid: ${olid}
-    categories: ${categories}
-    buy_link: ${amazonLink}
-    started: ${today}
-    finished: ${today}
-    released: ${released}
-    stars: ${stars}
-    tags: textbook
-    status: Finished
-    ---
-    ${description}`;
+layout: book-review
+title: ${title}
+author: ${author}
+olid: ${olid}
+buy_link: ${amazonLink}
+started: ${today}
+finished: ${today}
+released: ${released}
+tags: ${categories}
+categories: textbook
+status: Finished
+---
+${description}`;
 
         output.textContent = formattedOutput;
     } catch (error) {

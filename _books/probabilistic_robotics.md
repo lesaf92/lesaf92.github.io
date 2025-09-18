@@ -1,15 +1,14 @@
 ---
 layout: book-review
-title: Probabilistic robotics
+title: Probabilistic Robotics
 author: Sebastian Thrun, Dieter Fox, Wolfram Burgard
-olid: OL29755017M
-categories: Engineering, Technology, Computer Science, Textbooks, Mathematics,Science, Artificial Intelligence
+olid: OL3422030M
+categories: textbook, english
 buy_link: https://www.amazon.com/s?k=Probabilistic%20robotics%20Sebastian%20Thrun%2C%20Dieter%20Fox%2C%20Wolfram%20Burgard
 started: 2025-09-18
 finished: 2025-09-18
 released: 2005
-stars: 4.0
-tags: textbook
+tags: robotics, ai, math, statistics
 status: Finished
 ---
 
