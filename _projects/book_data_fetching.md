@@ -20,7 +20,6 @@ _styles: >
 
 Ok, let's see what this does. Here is the body part in HTML:
 
-<h1>Open Library Book Info Extractor</h1>
 <p>Enter a book title or author into the search box below. Select the correct book from the results to generate the formatted output.</p>
 <input type="text" id="searchInput" placeholder="Enter book title or author">
 <button onclick="searchBooks()">Search</button>
