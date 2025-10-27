@@ -3,6 +3,8 @@ layout: page
 permalink: /teaching/
 title: teaching
 description: Materials for courses
+images:
+  slider: true
 ---
 
 # 2025
@@ -10,13 +12,9 @@ description: Materials for courses
 I recently gave a talk about the **CPFL Adução** project at the Instituto Federal de São Paulo (IFSP). The audience consisted of undergraduate engineering students, and the experience was both motivating and inspiring, a great opportunity to share technical insights and discuss real-world applications of engineering principles.
 
 Presentation
-<a
-    href="assets/pdf/Projeto de pesquisa em Veículos Subaquáticos Autônomos.pdf"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="float-right"
->
-<i class="fa-solid fa-file-pdf"></i>
+
+<a href="assets/pdf/Projeto de pesquisa em Veículos Subaquáticos Autônomos.pdf" target="_blank" rel="noopener noreferrer" class="float-right" >
+    <i class="fa-solid fa-file-pdf"></i>
 </a>
 
 # 2023
