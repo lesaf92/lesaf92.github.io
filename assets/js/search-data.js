@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "post-understanding-rating-systems",
+            },{id: "post-haching-my-coffee-grinder",
+        
+          title: "Haching my coffee grinder",
+        
+        description: "The good news is that I own a powerful coffee grinder now; the bad news is that I had to destroy it.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/hacking-my-coffee-grinder/";
+          
+        },
+      },{id: "post-understanding-rating-systems",
         
           title: "Understanding Rating Systems",
         
