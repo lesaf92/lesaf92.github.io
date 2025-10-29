@@ -18,13 +18,13 @@ Slides in portuguese <a href="https://lesaf92.github.io/assets/pdf/Projeto de pe
 ### ITA
 I was invited to give a lecture in the graduate course **EE-214 – Inteligência Artificial em Controle e Automação** (Artificial Intelligence in Control and Automation) at ITA (Aeronautics Institute of Technology). The session focused on **Generative and Language Models**, covering the following topics:
 - Autoencoders;
-- VAEs (Variational Autoencoders)
-- GANs (Generative Adversarial Networks);
+- Variational Autoencoders (VAEs)
+- Generative Adversarial Networks (GANs);
 - Diffusion models;
 - Attention in Language models;
-- Transformers and LLMs (Large Language Models);
+- Transformers and Large Language Models (LLMs);
 
-Slides in english
+Slides in english <a href="https://lesaf92.github.io/assets/pdf/presentation_luiz_ee214_2023.pdf" target="_blank" rel="noopener noreferrer" class="float-center" ><i class="fa-solid fa-file-pdf"></i></a>
 
 Here are some pictures of the lecture.
 
