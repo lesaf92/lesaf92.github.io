@@ -15,29 +15,13 @@ It all began when my portable coffee grinder started showing the unmistakable si
 
 After two long years of relentless operation, faithfully serving my fellow graduate students at ITA with the purest and most aromatic coffee, the inevitable fate of all battery-powered devices finally caught up with us.
 
-<div class="pswp-gallery pswp-gallery--single-column" id="1">
-  <a href="https://lesaf92.github.io/assets/img/grinder_1.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_1.jpg" alt="" />
-  </a>
 
-  <a href="https://lesaf92.github.io/assets/img/grinder_2.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_2.jpg" alt="" />
-  </a>
+{% include figure.liquid loading="eager" path="assets/img/grinder_1.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
 
-  <a href="https://lesaf92.github.io/assets/img/grinder_3.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_3.jpg" alt="" />
-  </a>
+{% include figure.liquid loading="eager" path="assets/img/grinder_2.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
 
-</div>
+{% include figure.liquid loading="eager" path="assets/img/grinder_3.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
+
 
 Fortunately, we understand these matters well enough to diagnose and treat its disease, so we decided to change its batteries with a better one :sunglasses:.
 
