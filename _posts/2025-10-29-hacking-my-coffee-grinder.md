@@ -9,73 +9,36 @@ featured: false
 thumbnail: assets/img/coffee_grinder_portable.jpg
 giscus_comments: true
 images:
-  photoswipe: true
+  slider: true
 ---
 It all began when my portable coffee grinder started showing the unmistakable signs of its impending demise...
 
 After two long years of relentless operation, faithfully serving my fellow graduate students at ITA with the purest and most aromatic coffee, the inevitable fate of all battery-powered devices finally caught up with us.
 
-
-{% include figure.liquid loading="eager" path="assets/img/grinder_1.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-
-{% include figure.liquid loading="eager" path="assets/img/grinder_2.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-
-{% include figure.liquid loading="eager" path="assets/img/grinder_3.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
-
+<swiper-container keyboard="true" navigation="true" pagination="true" pagination-clickable="true" pagination-dynamic-bullets="true" rewind="true">
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_1.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_2.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_3.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+</swiper-container>
 
 Fortunately, we understand these matters well enough to diagnose and treat its disease, so we decided to change its batteries with a better one :sunglasses:.
 
 In order to do that, we needed to force our way through to get access to the electronics of a simple coffee grinder.
 
-<div class="pswp-gallery pswp-gallery--single-column" id="2">
-  <a href="https://lesaf92.github.io/assets/img/grinder_4.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_4.jpg" alt="" />
-  </a>
+<swiper-container keyboard="true" navigation="true" pagination="true" pagination-clickable="true" pagination-dynamic-bullets="true" rewind="true">
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_4.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_5.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_6.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_7.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+</swiper-container>
 
-  <a href="https://lesaf92.github.io/assets/img/grinder_5.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_5.jpg" alt="" />
-  </a>
-
-  <a href="https://lesaf92.github.io/assets/img/grinder_6.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_6.jpg" alt="" />
-  </a>
-
-  <a href="https://lesaf92.github.io/assets/img/grinder_7.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_7.jpg" alt="" />
-  </a>
-
-</div>
 
 Swapping the batteries was easy, the only problem was with the wire length but we can fix that as well. Cheap and quick: a clothespin wrapped with a rubber band and *voilà*.
 
 
-<div class="pswp-gallery pswp-gallery--single-column" id="3">
-  <a href="https://lesaf92.github.io/assets/img/grinder_8.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_8.jpg" alt="" />
-  </a>
-
-  <a href="https://lesaf92.github.io/assets/img/grinder_9.jpg"
-    data-pswp-width="1669"
-    data-pswp-height="2500"
-    target="_blank">
-    <img src="https://lesaf92.github.io/assets/img/grinder_9.jpg" alt="" />
-  </a>
-
-</div>
+<swiper-container keyboard="true" navigation="true" pagination="true" pagination-clickable="true" pagination-dynamic-bullets="true" rewind="true">
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_8.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+  <swiper-slide>{% include figure.liquid loading="eager" path="assets/img/grinder_9.jpg" class="img-fluid rounded z-depth-1" %}</swiper-slide>
+</swiper-container>
 
 Follow this website for updates on this kind stuff and many more! Peace :sunglasses:.
