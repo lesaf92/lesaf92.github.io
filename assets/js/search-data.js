@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "post-hacking-my-coffee-grinder",
+            },{id: "post-um-tributo-ao-meu-time-de-dota-2",
+        
+          title: "Um tributo ao meu time de Dota 2",
+        
+        description: "música e letra para &quot;Vou ficar jungle&quot;, composição de Ítalo e Suno AI",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/a-tribute-to-my-dota2-team/";
+          
+        },
+      },{id: "post-hacking-my-coffee-grinder",
         
           title: "Hacking my coffee grinder",
         
@@ -71,17 +82,6 @@ ninja.data = [{
         handler: () => {
           
             window.location.href = "/blog/2025/game-rating-systems/";
-          
-        },
-      },{id: "post-um-tributo-ao-meu-time-de-dota-2",
-        
-          title: "Um tributo ao meu time de Dota 2",
-        
-        description: "music and lyrics for a great song called &quot;Vou ficar jungle&quot;",
-        section: "Posts",
-        handler: () => {
-          
-            window.location.href = "/blog/2025/a-tribute-to-my-dota2-team/";
           
         },
       },{id: "post-meatballs-no",
