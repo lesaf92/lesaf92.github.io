@@ -1,8 +1,8 @@
 ---
 layout: post
 title: Um tributo ao meu time de Dota 2
-date: 2025-09-06 11:30:00
-description: music and lyrics for a great song called "Vou ficar jungle"
+date: 2025-10-30 12:00:00
+description: música e letra para "Vou ficar jungle", composição de Ítalo e Suno AI
 tags: lyrics band ai
 categories: music portuguese
 featured: false
