@@ -3,7 +3,7 @@ layout: post
 title: Hacking my coffee grinder
 date: 2025-10-29 11:30:00
 description: The good news is that I own a powerful coffee grinder now; the bad news is that I had to destroy it.
-tags: hack electronics coffee
+tags: hack electronics coffee gamb
 categories: fun english
 featured: false
 thumbnail: assets/img/coffee_grinder_portable.jpg
@@ -17,13 +17,13 @@ After two long years of relentless operation, faithfully serving my fellow gradu
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_1.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_1.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_2.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_2.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_3.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_3.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -34,16 +34,16 @@ In order to do that, we needed to force our way through to get access to the ele
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_4.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_4.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_5.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_5.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_6.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_6.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_7.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_7.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
@@ -53,11 +53,19 @@ Swapping the batteries was easy, the only problem was with the wire length but w
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_8.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_8.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/grinder_9.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/grinder_9.jpg" class="img-fluid rounded z-depth-1" zoomable=true %}
     </div>
 </div>
 
-Follow this website for updates on this kind stuff and many more! Peace :sunglasses:.
+Follow this website for updates on this kindda stuff and many more! Here is the grinder fully functional after the hacking:
+
+<div class="row mt-3">
+  <div class="col-sm mt-3 mt-md-0">
+    {% include video.liquid path="https://www.youtube.com/shorts/TZcF9w91cvY" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
+
+Peace :sunglasses:.
