@@ -64,7 +64,7 @@ Follow this website for updates on this kindda stuff and many more! Here is the 
 
 <div class="row mt-3">
   <div class="col-sm mt-3 mt-md-0">
-    {% include video.liquid path="https://www.youtube.com/shorts/TZcF9w91cvY" class="img-fluid rounded z-depth-1" %}
+    {% include video.liquid path="https://www.youtube.com/embed/TZcF9w91cvY" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
 
