@@ -51,9 +51,9 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "post-haching-my-coffee-grinder",
+            },{id: "post-hacking-my-coffee-grinder",
         
-          title: "Haching my coffee grinder",
+          title: "Hacking my coffee grinder",
         
         description: "The good news is that I own a powerful coffee grinder now; the bad news is that I had to destroy it.",
         section: "Posts",
