@@ -9,9 +9,16 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 echo "Running with root privileges."
+# ---------------------BASIC PACKAGES------------------------
 # Basic sudo apt install stuff
 sudo apt update
 sudo apt install -y net-tools nmap iftop screen tree ncdu htop locate openssh-server
 
-# Can I use curl inside curl?
-curl -fsSL https://tailscale.com/install.sh | sh
+# ---------------------TAILSCALE------------------------
+if command -v tailscale &> /dev/null; then
+    echo "Tailscale is already installed. Skipping..."
+else
+    echo "Installing Tailscale..."
+    # Can I use curl inside curl?
+    curl -fsSL https://tailscale.com/install.sh | sh
+fi
