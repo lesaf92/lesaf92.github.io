@@ -68,3 +68,17 @@ else
     cd ~
     rm -rf /tmp/btop /tmp/btop.tbz
 fi
+# ---------------------VSCode------------------------
+if command -v code &> /dev/null; then
+    echo "VS Code is already installed. Skipping..."
+else
+    echo "Installing VS Code..."
+    # 1. Download the .deb package
+    curl -L -o /tmp/code_latest_amd64.deb "https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64"
+
+    # 2. Install via apt
+    apt install -y /tmp/code_latest_amd64.deb
+
+    # 3. Cleanup
+    rm /tmp/code_latest_amd64.deb
+fi
