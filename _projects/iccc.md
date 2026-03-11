@@ -2,7 +2,7 @@
 layout: page
 title: ICCC
 description: An interactive web application for simulating and designing custom control laws for dynamic dynamic systems, featuring a real-time 2D inverted pendulum.
-img: https://raw.githubusercontent.com/lesaf92/iccc/main/assets/ICCC_screenshot.png
+img: assets/img/ICCC_screenshot.png
 importance: 1
 category: webapp
 related_publications: false
