@@ -110,7 +110,7 @@ Predicting Dota 2 matches is an inherently difficult task due to several factors
 
 
 ### Running the app
-- Link to the app: [**dota2.lesaf.cc**](https://dota2.lesaf.cc)
+- Link to the app: *LINK DEACTIVATED*
 - Link to the repo: [**github.com**](https://github.com/lesaf92/dota2_tournament_sim)
 
 ---
