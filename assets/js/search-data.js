@@ -116,6 +116,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/lord_of_the_rings/";
+            },},{id: "books-nonlinear-systems",
+          title: 'Nonlinear Systems',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/nonlinear_systems/";
             },},{id: "books-probabilistic-robotics",
           title: 'Probabilistic Robotics',
           description: "",
@@ -174,6 +179,11 @@ ninja.data = [{
           description: "A tournament simulator with match prediction capabilities powered by AI.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/dota2_tournament_sim/";
+            },},{id: "projects-iccc",
+          title: 'ICCC',
+          description: "An interactive web application for simulating and designing custom control laws for dynamic dynamic systems, featuring a real-time 2D inverted pendulum.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/iccc/";
             },},{
         id: 'social-email',
         title: 'email',
