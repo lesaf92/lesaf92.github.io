@@ -31,7 +31,8 @@ My primary research interests include:
 
 - **Multi-Robot Systems:** Cooperative exploration, SLAM, and map merging techniques in 3D environments.  
 - **State Estimation & Optimization:** Pose graph optimization, sensor fusion, and probabilistic methods for robust localization.  
-- **Autonomous Navigation:** Motion planning and control strategies for robot dynamics.  
+- **Autonomous Navigation:** Motion planning and control strategies for robot dynamics.
+- **Embedded Systems:** From electronics and PCB design to cloud infrastructure in IoT projects.
 
 
 In addition to research, I develop tools and write technical documentation aimed at supporting the robotics community.
