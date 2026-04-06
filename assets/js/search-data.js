@@ -184,6 +184,11 @@ ninja.data = [{
           description: "An interactive web application for simulating and designing custom control laws for dynamic dynamic systems, featuring a real-time 2D inverted pendulum.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/iccc/";
+            },},{id: "projects-scripts-center",
+          title: 'Scripts Center',
+          description: "Scripts, scripts everywhere.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/scripts_center/";
             },},{
         id: 'social-email',
         title: 'email',
