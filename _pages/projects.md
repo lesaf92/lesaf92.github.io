@@ -5,7 +5,7 @@ permalink: /projects/
 description: A growing collection of my projects.
 nav: true
 nav_order: 3
-display_categories: [webapp, tools]
+display_categories: [webapp, tools, misc]
 horizontal: false
 ---
 
