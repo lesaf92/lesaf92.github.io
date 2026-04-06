@@ -13,7 +13,7 @@ This is the Scripts Center, here a put some of the scripts I use or find useful 
 
 # Bash
 
-[**Log power draw from Raspberry Pi**](lesaf92/lesaf92.github.io/assets/scripts/log_power.sh)
-[**List networking interfaces (name, origin, type, details)**](lesaf92/lesaf92.github.io/assets/scripts/audit_net.sh)
-
+- [**Log power draw from Raspberry Pi**](assets/scripts/log_power.sh)
+- [**List networking interfaces (name, origin, type, details)**](assets/scripts/audit_net.sh)
+- [**Automate the creation of systemd services that run scripts**](assets/scripts/make_service.sh)
 ---
