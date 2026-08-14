@@ -174,6 +174,11 @@ ninja.data = [{
           description: "A web application that cleans and simplifies guitar tabs for focused practice sessions, featuring a hands-free autoscroll mode.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/cifraclub_simplifier/";
+            },},{id: "projects-claude-code-export-viewer",
+          title: 'Claude Code Export Viewer',
+          description: "A tool to easily inspect session exports from cloud code.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/claude_code_export_viewer/";
             },},{id: "projects-dota-2-tournament-simulator",
           title: 'Dota 2 Tournament Simulator',
           description: "A tournament simulator with match prediction capabilities powered by AI.",
