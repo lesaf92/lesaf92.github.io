@@ -11,6 +11,6 @@ giscus_comments: true
 
 The tool is updated, the old way was poor and weak, here is the link:
 
-[**Claude Code Export Viewer**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/html/session-reader.html)
+[**Claude Code Export Viewer**](https://htmlpreview.github.io/?https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/html/session-reader.html)
 
 ---
