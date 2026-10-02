@@ -16,5 +16,5 @@ This is the Scripts Center, here a put some of the scripts I use or find useful 
 - [**Log power draw from Raspberry Pi**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/log_power.sh)
 - [**List networking interfaces (name, origin, type, details)**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/audit_net.sh)
 - [**Automate the creation of systemd services that run scripts**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/make_service.sh)
-
+- [**Turn an AppImage file into a launcher menu icon (tested on kubuntu)**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/appimage_launcher.sh)
 ---
