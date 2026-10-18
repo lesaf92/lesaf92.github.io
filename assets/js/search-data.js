@@ -126,6 +126,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/probabilistic_robotics/";
+            },},{id: "books-applied-nonlinear-control",
+          title: 'Applied nonlinear control',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/slotine_book/";
             },},{id: "books-nonlinear-dynamics-and-chaos",
           title: 'Nonlinear dynamics and Chaos',
           description: "",
