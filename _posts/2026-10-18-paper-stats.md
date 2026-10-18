@@ -127,7 +127,7 @@ The journal list is a text file. Swap the robotics titles for your own field and
 - **The proxy is a rough bound.** arXiv v1 to journal publication is short or negative when authors post after acceptance, and long when they post years before submitting. It is never mixed into the measured numbers.
 - **Samples are recent-first.** Each journal's sample is its latest N usable papers, not a random draw over the year range.
 
-## Try it
+## Try it at my [**repo**](https://github.com/lesaf92/paper_stats)
 
 It is a small Python app with two dependencies, Flask and pypdf:
 
