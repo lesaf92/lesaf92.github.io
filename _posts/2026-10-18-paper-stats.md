@@ -11,10 +11,6 @@ mermaid:
   enabled: true
   zoomable: false
 tikzjax: true
-_styles: >
-  tikz-figure { display: flex; justify-content: center; overflow-x: auto; margin: 1.5rem 0; }
-  html[data-theme="dark"] 
-  tikz-figure svg { filter: invert(0.88) hue-rotate(180deg); }
 ---
 
 ## Why review time deserves data
@@ -67,7 +63,6 @@ The two measured sources are trusted the same: both are dates the publisher prin
 
 I ran it on 12 robotics and automation journals, asking for 25 papers each published in 2022–2026. It kept 189 papers, and 69 of them had printed review dates: 36 from Crossref and 33 from PDF footnotes.
 
-<div class="tikz-figure">
 <script type="text/tikz">
 \begin{document}
 \begin{tikzpicture}[x=0.017cm,y=-0.8cm]
@@ -107,7 +102,6 @@ I ran it on 12 robotics and automation journals, asking for 25 papers each publi
 \end{tikzpicture}
 \end{document}
 </script>
-</div>
 
 With 10 to 16 papers per journal, read this as a first look, not a ranking. The spread matters as much as the median: at Journal of Field Robotics, the middle half of papers took anywhere from about 6 to 15 months.
 
