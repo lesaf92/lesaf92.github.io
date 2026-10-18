@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "post-um-tributo-ao-meu-time-de-dota-2",
+            },{id: "post-measuring-how-long-robotics-journals-take-to-review-papers",
+        
+          title: "Measuring How Long Robotics Journals Take to Review Papers",
+        
+        description: "Paper Stats collects the received and accepted dates journals print, so you can pick a venue on data instead of folklore.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/paper-stats/";
+          
+        },
+      },{id: "post-um-tributo-ao-meu-time-de-dota-2",
         
           title: "Um tributo ao meu time de Dota 2",
         
