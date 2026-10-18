@@ -5,6 +5,7 @@ date: 2026-10-18 09:00:00
 description: Paper Stats collects the received and accepted dates journals print, so you can pick a venue on data instead of folklore.
 tags: robotics publishing python
 categories: work english
+thumbnail: assets/img/paper_stats_thumbnail.png
 giscus_comments: true
 mermaid:
   enabled: true
