@@ -53,7 +53,7 @@ ninja.data = [{
               },
             },{id: "post-measuring-how-long-robotics-journals-take-to-review-papers",
         
-          title: "Measuring How Long Robotics Journals Take to Review Papers",
+          title: "Measuring how long robotics journals take to review papers",
         
         description: "Paper Stats collects the received and accepted dates journals print, so you can pick a venue on data instead of folklore.",
         section: "Posts",
