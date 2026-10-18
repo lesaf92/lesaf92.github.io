@@ -1,15 +1,20 @@
 ---
 layout: post
-title: Measuring How Long Robotics Journals Take to Review Papers
+title: Measuring how long robotics journals take to review papers
 date: 2026-10-18 09:00:00
 description: Paper Stats collects the received and accepted dates journals print, so you can pick a venue on data instead of folklore.
 tags: robotics publishing python
 categories: work english
+thumbnail: assets/img/paper_stats_thumbnail.png
 giscus_comments: true
 mermaid:
   enabled: true
   zoomable: false
 tikzjax: true
+_styles: >
+  tikz-figure { display: flex; justify-content: center; overflow-x: auto; margin: 1.5rem 0; }
+  html[data-theme="dark"] 
+  tikz-figure svg { filter: invert(0.88) hue-rotate(180deg); }
 ---
 
 ## Why review time deserves data
@@ -62,12 +67,9 @@ The two measured sources are trusted the same: both are dates the publisher prin
 
 I ran it on 12 robotics and automation journals, asking for 25 papers each published in 2022–2026. It kept 189 papers, and 69 of them had printed review dates: 36 from Crossref and 33 from PDF footnotes.
 
-<style>
-  .tikz-figure { display: flex; justify-content: center; overflow-x: auto; margin: 1.5rem 0; }
-  html[data-theme="dark"] .tikz-figure svg { filter: invert(0.88) hue-rotate(180deg); }
-</style>
 <div class="tikz-figure">
 <script type="text/tikz">
+\begin{document}
 \begin{tikzpicture}[x=0.017cm,y=-0.8cm]
 \definecolor{accent}{RGB}{37,99,235}
 \definecolor{muted}{RGB}{140,140,140}
@@ -103,6 +105,7 @@ I ran it on 12 robotics and automation journals, asking for 25 papers each publi
 \node[anchor=base west,font=\footnotesize,text=quiet,inner xsep=0pt] at (jirs.west |- 0,-0.95) {Days from received to accepted $\cdot$ dot = median, bar = middle 50\% of papers $\cdot$ grid every 3 months};
 \node[anchor=north west,font=\footnotesize,text=quiet,align=left,inner xsep=0pt] at (jirs.west |- 0,5.85) {Shown: the 5 journals with 10 or more measured papers, published 2022--2026.\\Not shown: T-RO, IJRR, T-ASE and Robotics and Autonomous Systems had 2 or fewer papers with printed dates.};
 \end{tikzpicture}
+\end{document}
 </script>
 </div>
 
