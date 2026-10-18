@@ -1423,3 +1423,18 @@ figure.cover {
     color: #23212d !important;
   }
 }
+
+// TikZJax replaces each <script type="text/tikz"> with a bare <svg> whose viewBox
+// starts at "-72 -72". Center it, let it shrink on narrow screens, and flip its
+// black-on-transparent drawing for the dark theme (hue-rotate keeps colors close).
+// "*=" rather than "^=" so PurgeCSS, which matches word by word, keeps the rule.
+svg[viewBox*="-72 -72"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+}
+
+html[data-theme="dark"] svg[viewBox*="-72 -72"] {
+  filter: invert(0.88) hue-rotate(180deg);
+}
