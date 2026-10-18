@@ -126,6 +126,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/probabilistic_robotics/";
+            },},{id: "books-nonlinear-dynamics-and-chaos",
+          title: 'Nonlinear dynamics and Chaos',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/strogatz_chaos/";
             },},{id: "books-reinforcement-learning",
           title: 'Reinforcement learning',
           description: "",
