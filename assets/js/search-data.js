@@ -122,6 +122,11 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/farrel_book/";
+            },},{id: "books-optimal-control-theory",
+          title: 'Optimal Control Theory',
+          description: "",
+          section: "Books",handler: () => {
+              window.location.href = "/books/kirk_book/";
             },},{id: "books-the-lord-of-the-rings",
           title: 'The Lord of the Rings',
           description: "",
