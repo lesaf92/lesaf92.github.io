@@ -18,4 +18,8 @@ This is the Scripts Center, here a put some of the scripts I use or find useful 
 - [**Automate the creation of systemd services that run scripts**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/make_service.sh)
 - [**Turn an AppImage file into a launcher menu icon (tested on kubuntu)**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/scripts/appimage_launcher.sh)
 
+# Prompts
+
+- [**Create a master plan for an agent to follow and update**](https://raw.githubusercontent.com/lesaf92/lesaf92.github.io/main/assets/markdown/plan-recipe.md)
+
 ---
