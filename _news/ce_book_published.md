@@ -6,11 +6,11 @@ inline: false
 related_posts: false
 ---
 
-[Ebook](https://edufma.ufma.br/produto/circuitos-eletricos-teoria-e-pratica-em-videoaulas/)
+[Circuitos Elétricos: Teoria e Prática em Videoaulas](https://edufma.ufma.br/produto/circuitos-eletricos-teoria-e-pratica-em-videoaulas/)
 
 ---
 
-## :br: Portuguese 
+## :brazil: Portuguese 
 
 É com grande satisfação que anuncio o lançamento do meu livro *"Circuitos Elétricos: Teoria e Prática em Videoaulas"*, um material didático desenvolvido para auxiliar estudantes de Engenharia Elétrica e áreas afins na consolidação dos conceitos fundamentais da análise de circuitos. A obra alia o rigor teórico e a abstração matemática à demonstração de experimentos práticos em bancada por meio de videoaulas dedicadas, facilitando a fixação do conteúdo de forma aplicada. Por se tratar de uma publicação voltada ao aperfeiçoamento contínuo do ensino, convido professores, pesquisadores e alunos a explorarem o material e compartilharem seus feedbacks para que possamos aprimorá-lo constantemente.
 
