@@ -160,7 +160,12 @@ ninja.data = [{
             },},{id: "news-started-updating-this-site-seems-easy-sunglasses",
           title: 'Started updating this site, seems easy :sunglasses:',
           description: "",
-          section: "News",},{id: "projects-project-4",
+          section: "News",},{id: "news-i-published-a-book",
+          title: 'I published a book.',
+          description: "",
+          section: "News",handler: () => {
+              window.location.href = "/news/ce_book_published/";
+            },},{id: "projects-project-4",
           title: 'project 4',
           description: "another without an image",
           section: "Projects",handler: () => {
