@@ -1,0 +1,521 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Drawing digits in the air with two ultrasonic sensors | Luiz Eugenio S. Araujo Filho </title> <meta name="author" content="Luiz Eugenio S. Araujo Filho"> <meta name="description" content="Two HC-SR04 sensors, an ESP32 and a small network written in NumPy turn a pen moving through the air into a digit, and each step is small enough to teach."> <meta name="keywords" content="academic-website, portfolio-website"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link defer href="/assets/css/bootstrap-toc.min.css?6f5af0bb9aab25d79b2448143cbeaa88" rel="stylesheet"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%F0%9F%91%BE&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://lesaf92.github.io/blog/2026/ultrasonic-mnist/"> <script src="/assets/js/theme.js?a81d82887dd692e91686b43de4542f18"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> <link defer rel="stylesheet" type="text/css" href="/assets/css/tikzjax.min.css?fd53cc8a9145aa7bee785ae5c8f9e79b"> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Luiz</span> Eugenio S. Araujo Filho </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">about </a> </li> <li class="nav-item active"> <a class="nav-link" href="/blog/">blog </a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">publications </a> </li> <li class="nav-item "> <a class="nav-link" href="/projects/">projects </a> </li> <li class="nav-item dropdown "> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">submenus </a> <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"> <a class="dropdown-item " href="/books/">bookshelf</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/news/">news</a> <div class="dropdown-divider"></div> <a class="dropdown-item " href="/teaching/">teaching</a> </div> </li> <li class="nav-item"> <button id="search-toggle" title="Search" onclick="openSearchModal()"> <span class="nav-link">ctrl k <i class="ti ti-search"></i></span> </button> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="row"> <div class="col-sm-3"> <nav id="toc-sidebar" class="sticky-top"></nav> </div> <div class="col-sm-9"> <div class="post"> <header class="post-header"> <h1 class="post-title">Drawing digits in the air with two ultrasonic sensors</h1> <p class="post-meta"> Created on October 31, 2026 </p> <p class="post-tags"> <a href="/blog/2026"> <i class="fa-solid fa-calendar fa-sm"></i> 2026 </a>   ·   <a href="/blog/tag/electronics"> <i class="fa-solid fa-hashtag fa-sm"></i> electronics</a>   <a href="/blog/tag/esp32"> <i class="fa-solid fa-hashtag fa-sm"></i> esp32</a>   <a href="/blog/tag/machine-learning"> <i class="fa-solid fa-hashtag fa-sm"></i> machine-learning</a>   <a href="/blog/tag/education"> <i class="fa-solid fa-hashtag fa-sm"></i> education</a>   <a href="/blog/tag/python"> <i class="fa-solid fa-hashtag fa-sm"></i> python</a>   ·   <a href="/blog/category/work"> <i class="fa-solid fa-tag fa-sm"></i> work</a>   <a href="/blog/category/english"> <i class="fa-solid fa-tag fa-sm"></i> english</a> </p> </header> <article class="post-content"> <div id="markdown-content"> <p>Move a pen through the air in front of two ultrasonic sensors and a web page draws its trail as you go. Four seconds after the first point, a neural network says which digit you wrote.</p> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/air_read.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="caption"> The Ultrasonic tab after reading a 2. Left: the 10 cm drawing area, with its edges in mm. Right: the 28×28 image the network received and its probability for each digit. This trail came from a script that sends traced points as sensor readings (see <a href="#what-it-cannot-do-yet">What it cannot do yet</a>). </div> <h2 id="why-build-this">Why build this</h2> <p>It’s a teaching project. Every part is small: the firmware is 54 lines, the server 153, the training script 146, and the web page is one HTML file. Nothing hides in a library. The network is plain NumPy and the sensor readings travel as plain text, so a student can read every part in an afternoon, and every part has something to measure.</p> <p>The project crosses four subjects that are usually taught apart:</p> <ul> <li> <strong>Electronics:</strong> time of flight, logic levels, a voltage divider, timing.</li> <li> <strong>Networking:</strong> WiFi, IP addresses, UDP ports, a firewall.</li> <li> <strong>Signal processing:</strong> noise, spikes, a median filter, a low-pass filter, and the lag each one costs.</li> <li> <strong>Machine learning:</strong> a dataset, a network trained from scratch, backpropagation by hand, overfitting, and what happens when real inputs don’t look like the training data.</li> </ul> <h2 id="the-apparatus">The apparatus</h2> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/apparatus.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="caption"> Two HC-SR04 sensors at right angles. The one on the Y axis measures the object's x, the one on the X axis measures its y. The object is tracked only where both ~15° beams overlap. </div> <p>An HC-SR04 sends a burst of 40 kHz sound when its TRIG pin gets a 10 µs pulse, then holds its ECHO pin high until the echo comes back. The distance follows from the time the pin stays high, \(t\), and the speed of sound, \(v\):</p> \[d = \frac{v\,t}{2}, \qquad v \approx 343\ \text{m/s at } 20\,^\circ\text{C}\] <p>The sound goes there and back, hence the 2. That is about 5.8 µs of echo per millimetre, and it is all the firmware needs:</p> <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="nf">readMm</span><span class="p">(</span><span class="kt">int</span> <span class="n">trig</span><span class="p">,</span> <span class="kt">int</span> <span class="n">echo</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">trig</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delayMicroseconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">trig</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="c1">// ~5.8 us of echo per mm of distance, plus up to ~3 ms before some modules raise ECHO</span>
+  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">us</span> <span class="o">=</span> <span class="n">pulseIn</span><span class="p">(</span><span class="n">echo</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">,</span> <span class="n">MAX_MM</span> <span class="o">*</span> <span class="mi">6</span> <span class="o">+</span> <span class="mi">3000</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">us</span> <span class="o">?</span> <span class="n">us</span> <span class="o">*</span> <span class="mi">343</span> <span class="o">/</span> <span class="mi">2000</span> <span class="o">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>  <span class="c1">// sound at 343 m/s (20 °C), there and back</span>
+<span class="p">}</span>
+</code></pre></div></div> <p>Three details of the circuit and the timing are worth a lesson each:</p> <ul> <li> <strong>Logic levels.</strong> The HC-SR04 runs on 5 V and so does its ECHO output, but the ESP32-S3’s pins take 3.3 V. A divider with 1 kΩ from ECHO to the pin and 2 kΩ from the pin to ground brings it down to \(5 \times \frac{2}{1+2} \approx 3.3\) V. TRIG works from 3.3 V as it is.</li> <li> <strong>Crosstalk.</strong> The two beams cross, so one sensor can hear the other’s ping. The firmware pings them in turn and pauses 25 ms after each, which caps the rate at about 16 pairs of readings per second.</li> <li> <strong>Beam width.</strong> A beam about 15° wide is about 50 mm across at 200 mm, so the zone both sensors cover is small. I set the drawing area to 150–250 mm on both axes: a 10 cm square.</li> </ul> <table> <thead> <tr> <th>HC-SR04 pin</th> <th>ESP32-S3 (pins from <code class="language-plaintext highlighter-rouge">config.example.h</code>)</th> </tr> </thead> <tbody> <tr> <td>VCC</td> <td>5 V</td> </tr> <tr> <td>GND</td> <td>GND</td> </tr> <tr> <td>TRIG</td> <td>GPIO 4 for the x sensor, GPIO 6 for the y sensor</td> </tr> <tr> <td>ECHO</td> <td>GPIO 5 for the x sensor, GPIO 7 for the y sensor, each through the 1 kΩ + 2 kΩ divider</td> </tr> </tbody> </table> <h2 id="from-the-sensors-to-the-browser">From the sensors to the browser</h2> <pre><code class="language-mermaid">flowchart TD
+    sx["&lt;b&gt;HC-SR04 on the Y axis&lt;/b&gt;&lt;br/&gt;measures x"]
+    sy["&lt;b&gt;HC-SR04 on the X axis&lt;/b&gt;&lt;br/&gt;measures y"]
+    esp["&lt;b&gt;ESP32-S3&lt;/b&gt;&lt;br/&gt;pings them in turn,&lt;br/&gt;~16 pairs per second"]
+    srv["&lt;b&gt;server.py&lt;/b&gt;&lt;br/&gt;median + low-pass per sensor,&lt;br/&gt;mm to area pixels"]
+    page["&lt;b&gt;Web page&lt;/b&gt;&lt;br/&gt;draws the trail,&lt;br/&gt;makes the 28×28 image"]
+    nn["&lt;b&gt;server.py: /predict&lt;/b&gt;&lt;br/&gt;centre of mass,&lt;br/&gt;784 → 256 → 10 network"]
+    sx -- echo time --&gt; esp
+    sy -- echo time --&gt; esp
+    esp -- "UDP over WiFi, text like 183 207" --&gt; srv
+    srv -- server-sent events --&gt; page
+    page -- "784 pixels, 4 s after the first point" --&gt; nn
+    nn -- "label + 10 probabilities" --&gt; page
+    classDef learnt fill:#2563eb22,stroke:#2563eb,stroke-width:2px
+    class nn learnt
+</code></pre> <p>The ESP32 sends each pair of distances as one UDP packet of plain text, such as <code class="language-plaintext highlighter-rouge">183 207</code>, with <code class="language-plaintext highlighter-rouge">-1</code> for a sensor that heard no echo. UDP suits this: a lost packet is one missing point, and a late point is worse than none, so there is nothing worth sending again.</p> <p>On the computer, <code class="language-plaintext highlighter-rouge">server.py</code> does three things with each packet.</p> <p><strong>It smooths each sensor.</strong> A still object doesn’t give a still reading: on my bench, consecutive readings of an object that didn’t move differed by 5.9 mm on average. Two filters fix most of it. A median of the last three readings drops a single bad ping, a spike or a missing echo. Then a low-pass filter, an exponential moving average, evens out the jitter that is left:</p> \[\hat{x}_k = \hat{x}_{k-1} + \alpha\,(m_k - \hat{x}_{k-1}), \qquad \alpha = 0.5\] <p>where \(m_k\) is the median of the latest three readings and \(\hat{x}_k\) the smoothed value.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">Smoother</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">median_of</span><span class="p">,</span> <span class="n">low_pass</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">recent</span> <span class="o">=</span> <span class="nf">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="n">median_of</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">low_pass</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">avg</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">reading</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">recent</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span>
+        <span class="n">median</span> <span class="o">=</span> <span class="nf">sorted</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">recent</span><span class="p">)[</span><span class="nf">len</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">recent</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">median</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">self</span><span class="p">.</span><span class="n">avg</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">avg</span> <span class="o">=</span> <span class="n">median</span> <span class="k">if</span> <span class="n">self</span><span class="p">.</span><span class="n">avg</span> <span class="ow">is</span> <span class="bp">None</span> <span class="k">else</span> <span class="n">self</span><span class="p">.</span><span class="n">avg</span> <span class="o">+</span> <span class="n">self</span><span class="p">.</span><span class="n">weight</span> <span class="o">*</span> <span class="p">(</span><span class="n">median</span> <span class="o">-</span> <span class="n">self</span><span class="p">.</span><span class="n">avg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nf">round</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">avg</span><span class="p">)</span>
+</code></pre></div></div> <p>The repo’s self-test feeds it these readings, in mm:</p> <table> <thead> <tr> <th>Readings</th> <th>100</th> <th>100</th> <th>900</th> <th>100</th> <th>−1</th> <th>100</th> <th>−1</th> <th>−1</th> </tr> </thead> <tbody> <tr> <td><strong>Median of 3</strong></td> <td>100</td> <td>100</td> <td>100</td> <td>100</td> <td>100</td> <td>100</td> <td>−1</td> <td>−1</td> </tr> </tbody> </table> <p>The 900 mm spike and the single missing echo vanish. Two missing echoes in a row get through, because then the object really is gone.</p> <table> <thead> <tr> <th>Readings</th> <th>100</th> <th>200</th> <th>200</th> <th>−1</th> <th>300</th> </tr> </thead> <tbody> <tr> <td><strong>Low-pass, α = 0.5</strong></td> <td>100</td> <td>150</td> <td>175</td> <td>−1</td> <td>300</td> </tr> </tbody> </table> <p>The low-pass moves halfway to each new reading, and starts over after a missing echo so that the next trail doesn’t drift in from where the last one ended.</p> <p>Together they cut the average step between readings of a still object from 5.9 to 2.0 mm. Neither is free. The median of three delays the point by one reading, about 60 ms, and the low-pass with α = 0.5 needs three readings to cover seven eighths of a sudden move. Both are set in <code class="language-plaintext highlighter-rouge">config.toml</code> (<code class="language-plaintext highlighter-rouge">median_of</code>, <code class="language-plaintext highlighter-rouge">low_pass</code>), and changing them while drawing is the quickest way to feel the trade between noise and lag.</p> <p><strong>It maps millimetres to the drawing area.</strong> The area is 480×480 px on the page. Distances between \(x_0 = 150\) and \(x_1 = 250\) mm map to 0–480 px from left to right, and the same for y, flipped, because y grows upwards on the apparatus and downwards on a screen:</p> \[p_x = \frac{x - x_0}{x_1 - x_0}\,W, \qquad p_y = \left(1 - \frac{y - y_0}{y_1 - y_0}\right) H\] <p><strong>It relays the point</strong> to every open page over server-sent events: one long HTTP response that the browser reads line by line with <code class="language-plaintext highlighter-rouge">EventSource</code>.</p> <h2 id="drawing-in-the-air">Drawing in the air</h2> <p>My first try at drawing with the sensors felt wrong in two ways. The dot jumped from reading to reading, 16 times a second, and I couldn’t tell how big the area was or where its edges were. The Ultrasonic tab now deals with both.</p> <div class="row mt-3"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/air_drawing.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/air_left.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <div class="caption"> Left: mid-stroke, the dot glides from one reading to the next and the trail follows it. Right: the pen left the area through the bottom; a ring waits on the edge and the text says how far to move back. </div> <ul> <li> <strong>The dot glides.</strong> Between two readings the dot moves in a straight line over the measured time between packets, and the trail is drawn as curves through the midpoints of its points instead of straight segments. Sixteen points a second then look like motion.</li> <li> <strong>The edges are in millimetres.</strong> The scale around the area matches the distances in <code class="language-plaintext highlighter-rouge">config.toml</code>, and the line under the title shows both live readings.</li> <li> <strong>Leaving the area lifts the pen.</strong> Outside the area the trail breaks, a ring stays on the nearest edge and the page says which way and how far to move back. Leaving is also how you start the next digit: after a read, a new trail starts only when the pen has left the area and come back.</li> <li> <strong>The network sees the area as drawn</strong>, without rescaling. More on this in <a href="#from-trail-to-input">From trail to input</a>.</li> </ul> <h2 id="the-network">The network</h2> <p>The page’s third tab, Model, describes the network that reads the digits. It reads everything from the model file, so it follows each retraining. This section goes through it in more depth.</p> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/model_tab.jpg" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="caption"> The top of the Model tab: the headline numbers, the layers and the accuracy after each epoch. </div> <h3 id="the-dataset-mnist">The dataset: MNIST</h3> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/mnist_samples.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="caption"> The first three test images of each digit in MNIST, enlarged from 28×28 pixels. </div> <p>MNIST (LeCun, Cortes and Burges, 1998) has 70,000 handwritten digits: 60,000 for training and 10,000 for testing, written by US Census Bureau employees and high-school students, with different writers in the two sets. Each digit was scaled to fit a 20×20 box, anti-aliased to grey levels, and placed in a 28×28 image with its centre of mass in the middle. <code class="language-plaintext highlighter-rouge">train.py</code> downloads the four files from a Google Cloud mirror and reads them with NumPy alone:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">load_mnist</span><span class="p">(</span><span class="n">split</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Images as (n, 784) float32 in 0..1, labels as (n,) int.</span><span class="sh">"""</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="sh">"</span><span class="s">train</span><span class="sh">"</span> <span class="k">if</span> <span class="n">split</span> <span class="o">==</span> <span class="sh">"</span><span class="s">train</span><span class="sh">"</span> <span class="k">else</span> <span class="sh">"</span><span class="s">t10k</span><span class="sh">"</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="p">((</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">-images-idx3-ubyte.gz</span><span class="sh">"</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">-labels-idx1-ubyte.gz</span><span class="sh">"</span><span class="p">,</span> <span class="mi">8</span><span class="p">)):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">DATA</span> <span class="o">/</span> <span class="n">name</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">path</span><span class="p">.</span><span class="nf">exists</span><span class="p">():</span>
+            <span class="n">DATA</span><span class="p">.</span><span class="nf">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+            <span class="n">urllib</span><span class="p">.</span><span class="n">request</span><span class="p">.</span><span class="nf">urlretrieve</span><span class="p">(</span><span class="n">URL</span> <span class="o">+</span> <span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="n">out</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">frombuffer</span><span class="p">(</span><span class="n">gzip</span><span class="p">.</span><span class="nf">decompress</span><span class="p">(</span><span class="n">path</span><span class="p">.</span><span class="nf">read_bytes</span><span class="p">()),</span> <span class="n">np</span><span class="p">.</span><span class="n">uint8</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">offset</span><span class="p">))</span>
+    <span class="n">images</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">out</span>
+    <span class="k">return</span> <span class="n">images</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">784</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span><span class="p">,</span> <span class="n">labels</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</code></pre></div></div> <p>The offsets skip each file’s header, 16 bytes for images and 8 for labels. Everything after it is one byte per pixel or per label.</p> <h3 id="from-trail-to-input">From trail to input</h3> <p>A network only knows the kind of image it was trained on, so the page turns a trail into an image the way MNIST digits were made:</p> <ol> <li> <strong>The whole drawing area shrinks to 28×28.</strong> The 10 cm area becomes 28 pixels, 3.6 mm each, and the dashed box on it is the 20×20 box MNIST digits fill. A digit keeps the size it was drawn at.</li> <li> <strong>The trail is drawn white on black</strong> with a 2.5 px line, about the stroke width of an MNIST digit. The thick trail on screen plays no part.</li> <li> <strong>The server moves the centre of mass to the middle</strong>, as MNIST did.</li> <li> <strong>The 784 pixel values</strong>, from 0 to 1, go through the network.</li> </ol> <p>The first two steps are a canvas transform in the page (simplified from <code class="language-plaintext highlighter-rouge">rasterize()</code>):</p> <div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">const</span> <span class="nx">scale</span> <span class="o">=</span> <span class="mi">28</span> <span class="o">/</span> <span class="nb">Math</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="nx">W</span><span class="p">,</span> <span class="nx">H</span><span class="p">);</span>  <span class="c1">// area px to network px</span>
+<span class="nx">small</span><span class="p">.</span><span class="nf">setTransform</span><span class="p">(</span><span class="nx">scale</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">scale</span><span class="p">,</span> <span class="mi">14</span> <span class="o">-</span> <span class="nx">scale</span> <span class="o">*</span> <span class="nx">W</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">14</span> <span class="o">-</span> <span class="nx">scale</span> <span class="o">*</span> <span class="nx">H</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
+<span class="nx">small</span><span class="p">.</span><span class="nx">strokeStyle</span> <span class="o">=</span> <span class="dl">'</span><span class="s1">#fff</span><span class="dl">'</span><span class="p">;</span>
+<span class="nx">small</span><span class="p">.</span><span class="nx">lineWidth</span> <span class="o">=</span> <span class="nx">cfg</span><span class="p">.</span><span class="nx">inference</span><span class="p">.</span><span class="nx">stroke_width</span> <span class="o">/</span> <span class="nx">scale</span><span class="p">;</span>
+<span class="nf">strokePaths</span><span class="p">(</span><span class="nx">small</span><span class="p">);</span>
+</code></pre></div></div> <p>The third is a few lines of NumPy on the server:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">center_of_mass</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Shift a 28x28 image so its center of mass sits in the middle, as MNIST does.</span><span class="sh">"""</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="n">img</span><span class="p">.</span><span class="nf">sum</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">img</span>
+    <span class="n">ys</span><span class="p">,</span> <span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">indices</span><span class="p">(</span><span class="n">img</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">dy</span><span class="p">,</span> <span class="n">dx</span> <span class="o">=</span> <span class="nf">round</span><span class="p">(</span><span class="mf">13.5</span> <span class="o">-</span> <span class="p">(</span><span class="n">ys</span> <span class="o">*</span> <span class="n">img</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">total</span><span class="p">),</span> <span class="nf">round</span><span class="p">(</span><span class="mf">13.5</span> <span class="o">-</span> <span class="p">(</span><span class="n">xs</span> <span class="o">*</span> <span class="n">img</span><span class="p">).</span><span class="nf">sum</span><span class="p">()</span> <span class="o">/</span> <span class="n">total</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="nf">roll</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">dy</span><span class="p">,</span> <span class="n">dx</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</code></pre></div></div> <p>At first the page scaled each trail to fill MNIST’s box, as MNIST did with each digit. That reads well, but it hides the space you are drawing in: with the sensors I couldn’t tell how big I was writing, and whatever I drew, the network got the same size. With the fixed frame, the dashed box says how big to write, and the 28×28 preview fills in live as you draw, so you see what the network will get. <code class="language-plaintext highlighter-rouge">fit_box = true</code> in <code class="language-plaintext highlighter-rouge">config.toml</code> brings back the per-trail scaling to compare.</p> <h3 id="the-architecture">The architecture</h3> <script type="text/tikz">
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=-0.62cm]
+\definecolor{accent}{RGB}{37,99,235}
+\definecolor{muted}{RGB}{140,140,140}
+\definecolor{quiet}{RGB}{100,100,100}
+\definecolor{gridc}{RGB}{222,222,222}
+\definecolor{diagc}{RGB}{214,216,220}
+\draw[gridc] (0,0.3) -- (3.2,1.0);
+\draw[gridc] (0,0.3) -- (3.2,2.0);
+\draw[gridc] (0,0.3) -- (3.2,3.0);
+\draw[gridc] (0,0.3) -- (3.2,5.1);
+\draw[gridc] (0,0.3) -- (3.2,6.1);
+\draw[gridc] (0,0.3) -- (3.2,7.1);
+\draw[gridc] (0,1.3) -- (3.2,1.0);
+\draw[gridc] (0,1.3) -- (3.2,2.0);
+\draw[gridc] (0,1.3) -- (3.2,3.0);
+\draw[gridc] (0,1.3) -- (3.2,5.1);
+\draw[gridc] (0,1.3) -- (3.2,6.1);
+\draw[gridc] (0,1.3) -- (3.2,7.1);
+\draw[gridc] (0,2.3) -- (3.2,1.0);
+\draw[gridc] (0,2.3) -- (3.2,2.0);
+\draw[gridc] (0,2.3) -- (3.2,3.0);
+\draw[gridc] (0,2.3) -- (3.2,5.1);
+\draw[gridc] (0,2.3) -- (3.2,6.1);
+\draw[gridc] (0,2.3) -- (3.2,7.1);
+\draw[gridc] (0,5.8) -- (3.2,1.0);
+\draw[gridc] (0,5.8) -- (3.2,2.0);
+\draw[gridc] (0,5.8) -- (3.2,3.0);
+\draw[gridc] (0,5.8) -- (3.2,5.1);
+\draw[gridc] (0,5.8) -- (3.2,6.1);
+\draw[gridc] (0,5.8) -- (3.2,7.1);
+\draw[gridc] (0,6.8) -- (3.2,1.0);
+\draw[gridc] (0,6.8) -- (3.2,2.0);
+\draw[gridc] (0,6.8) -- (3.2,3.0);
+\draw[gridc] (0,6.8) -- (3.2,5.1);
+\draw[gridc] (0,6.8) -- (3.2,6.1);
+\draw[gridc] (0,6.8) -- (3.2,7.1);
+\draw[gridc] (0,7.8) -- (3.2,1.0);
+\draw[gridc] (0,7.8) -- (3.2,2.0);
+\draw[gridc] (0,7.8) -- (3.2,3.0);
+\draw[gridc] (0,7.8) -- (3.2,5.1);
+\draw[gridc] (0,7.8) -- (3.2,6.1);
+\draw[gridc] (0,7.8) -- (3.2,7.1);
+\draw[gridc] (3.2,1.0) -- (6.4,0.0);
+\draw[gridc] (3.2,1.0) -- (6.4,0.9);
+\draw[gridc] (3.2,1.0) -- (6.4,1.8);
+\draw[gridc] (3.2,1.0) -- (6.4,2.7);
+\draw[gridc] (3.2,1.0) -- (6.4,3.6);
+\draw[gridc] (3.2,1.0) -- (6.4,4.5);
+\draw[gridc] (3.2,1.0) -- (6.4,5.4);
+\draw[gridc] (3.2,1.0) -- (6.4,6.3);
+\draw[gridc] (3.2,1.0) -- (6.4,7.2);
+\draw[gridc] (3.2,1.0) -- (6.4,8.1);
+\draw[gridc] (3.2,2.0) -- (6.4,0.0);
+\draw[gridc] (3.2,2.0) -- (6.4,0.9);
+\draw[gridc] (3.2,2.0) -- (6.4,1.8);
+\draw[gridc] (3.2,2.0) -- (6.4,2.7);
+\draw[gridc] (3.2,2.0) -- (6.4,3.6);
+\draw[gridc] (3.2,2.0) -- (6.4,4.5);
+\draw[gridc] (3.2,2.0) -- (6.4,5.4);
+\draw[gridc] (3.2,2.0) -- (6.4,6.3);
+\draw[gridc] (3.2,2.0) -- (6.4,7.2);
+\draw[gridc] (3.2,2.0) -- (6.4,8.1);
+\draw[gridc] (3.2,3.0) -- (6.4,0.0);
+\draw[gridc] (3.2,3.0) -- (6.4,0.9);
+\draw[gridc] (3.2,3.0) -- (6.4,1.8);
+\draw[gridc] (3.2,3.0) -- (6.4,2.7);
+\draw[gridc] (3.2,3.0) -- (6.4,3.6);
+\draw[gridc] (3.2,3.0) -- (6.4,4.5);
+\draw[gridc] (3.2,3.0) -- (6.4,5.4);
+\draw[gridc] (3.2,3.0) -- (6.4,6.3);
+\draw[gridc] (3.2,3.0) -- (6.4,7.2);
+\draw[gridc] (3.2,3.0) -- (6.4,8.1);
+\draw[gridc] (3.2,5.1) -- (6.4,0.0);
+\draw[gridc] (3.2,5.1) -- (6.4,0.9);
+\draw[gridc] (3.2,5.1) -- (6.4,1.8);
+\draw[gridc] (3.2,5.1) -- (6.4,2.7);
+\draw[gridc] (3.2,5.1) -- (6.4,3.6);
+\draw[gridc] (3.2,5.1) -- (6.4,4.5);
+\draw[gridc] (3.2,5.1) -- (6.4,5.4);
+\draw[gridc] (3.2,5.1) -- (6.4,6.3);
+\draw[gridc] (3.2,5.1) -- (6.4,7.2);
+\draw[gridc] (3.2,5.1) -- (6.4,8.1);
+\draw[gridc] (3.2,6.1) -- (6.4,0.0);
+\draw[gridc] (3.2,6.1) -- (6.4,0.9);
+\draw[gridc] (3.2,6.1) -- (6.4,1.8);
+\draw[gridc] (3.2,6.1) -- (6.4,2.7);
+\draw[gridc] (3.2,6.1) -- (6.4,3.6);
+\draw[gridc] (3.2,6.1) -- (6.4,4.5);
+\draw[gridc] (3.2,6.1) -- (6.4,5.4);
+\draw[gridc] (3.2,6.1) -- (6.4,6.3);
+\draw[gridc] (3.2,6.1) -- (6.4,7.2);
+\draw[gridc] (3.2,6.1) -- (6.4,8.1);
+\draw[gridc] (3.2,7.1) -- (6.4,0.0);
+\draw[gridc] (3.2,7.1) -- (6.4,0.9);
+\draw[gridc] (3.2,7.1) -- (6.4,1.8);
+\draw[gridc] (3.2,7.1) -- (6.4,2.7);
+\draw[gridc] (3.2,7.1) -- (6.4,3.6);
+\draw[gridc] (3.2,7.1) -- (6.4,4.5);
+\draw[gridc] (3.2,7.1) -- (6.4,5.4);
+\draw[gridc] (3.2,7.1) -- (6.4,6.3);
+\draw[gridc] (3.2,7.1) -- (6.4,7.2);
+\draw[gridc] (3.2,7.1) -- (6.4,8.1);
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,0.3) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,1.3) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,2.3) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,5.8) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,6.8) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (0,7.8) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,1.0) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,2.0) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,3.0) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,5.1) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,6.1) {};
+\node[circle,draw=quiet,thick,fill=white,minimum size=0.44cm] at (3.2,7.1) {};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,0.0) {0};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,0.9) {1};
+\node[circle,draw=accent,fill=accent,text=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,1.8) {2};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,2.7) {3};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,3.6) {4};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,4.5) {5};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,5.4) {6};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,6.3) {7};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,7.2) {8};
+\node[circle,draw=quiet,fill=white,thick,minimum size=0.44cm,inner sep=0pt,font=\footnotesize] at (6.4,8.1) {9};
+\node at (0,4.05) {$\vdots$};
+\node at (3.2,4.05) {$\vdots$};
+\node[font=\small\bfseries] at (0,9.5) {784 inputs};
+\node[font=\footnotesize,text=quiet] at (0,10.2) {28 $\times$ 28 pixels, 0 to 1};
+\node[font=\small\bfseries] at (3.2,9.5) {256 hidden units};
+\node[font=\footnotesize,text=quiet] at (3.2,10.2) {ReLU};
+\node[font=\small\bfseries] at (6.4,9.5) {10 outputs};
+\node[font=\footnotesize,text=quiet] at (6.4,10.2) {softmax, one per digit};
+\node[font=\footnotesize,fill=white,inner sep=2pt] at (1.6,-0.9) {$W_1$: $784 \times 256$, $b_1$: 256};
+\node[font=\footnotesize,fill=white,inner sep=2pt] at (4.8,-0.9) {$W_2$: $256 \times 10$, $b_2$: 10};
+\draw[->,thick,accent] (6.75,1.8) -- (7.5,1.8) node[right,font=\small\bfseries] {read as 2};
+\end{tikzpicture}
+\end{document}
+</script> <p>It’s a multilayer perceptron with one hidden layer of 256 units:</p> \[\mathbf{h} = \max(0,\; \mathbf{x} W_1 + \mathbf{b}_1), \qquad \mathbf{z} = \mathbf{h} W_2 + \mathbf{b}_2, \qquad p_i = \frac{e^{z_i}}{\sum_j e^{z_j}}\] <p>Here \(\mathbf{x}\) is the image as a row of 784 numbers. Each hidden unit takes a weighted sum of all 784 pixels and keeps it if it is positive (ReLU). Each output takes a weighted sum of the 256 hidden units, and the softmax turns the 10 outputs into probabilities that add up to 1. The answer is the digit with the highest one.</p> <table> <thead> <tr> <th>Layer</th> <th style="text-align: right">Weights</th> <th style="text-align: right">Biases</th> <th style="text-align: right">Parameters</th> </tr> </thead> <tbody> <tr> <td>Input → hidden</td> <td style="text-align: right">784 × 256 = 200,704</td> <td style="text-align: right">256</td> <td style="text-align: right">200,960</td> </tr> <tr> <td>Hidden → output</td> <td style="text-align: right">256 × 10 = 2,560</td> <td style="text-align: right">10</td> <td style="text-align: right">2,570</td> </tr> <tr> <td><strong>Network</strong></td> <td style="text-align: right"> </td> <td style="text-align: right"> </td> <td style="text-align: right"><strong>203,530</strong></td> </tr> </tbody> </table> <p>The whole forward pass is four lines. Subtracting the largest output before the exponential gives the same softmax and keeps <code class="language-plaintext highlighter-rouge">np.exp</code> from overflowing:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">@</span> <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">W1</span><span class="sh">"</span><span class="p">]</span> <span class="o">+</span> <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">b1</span><span class="sh">"</span><span class="p">])</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">h</span> <span class="o">@</span> <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">W2</span><span class="sh">"</span><span class="p">]</span> <span class="o">+</span> <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">b2</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">e</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">exp</span><span class="p">(</span><span class="n">z</span> <span class="o">-</span> <span class="n">z</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="n">e</span> <span class="o">/</span> <span class="n">e</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div> <h3 id="training-backpropagation-by-hand">Training: backpropagation by hand</h3> <p>No framework computes the gradients here; they are written out. For one image with true label \(y\), the loss is the cross-entropy, minus the log of the probability given to the right answer:</p> \[L = -\log p_y\] <p>Its gradient with respect to the outputs before the softmax, \(\mathbf{z}\), comes out short: the predicted probabilities minus the one-hot true label.</p> \[\frac{\partial L}{\partial \mathbf{z}} = \mathbf{p} - \mathbf{e}_y\] <p>From there the chain rule runs backwards through each layer. ReLU passes the gradient where the unit was active and blocks it where it wasn’t:</p> \[\frac{\partial L}{\partial W_2} = \mathbf{h}^\top (\mathbf{p} - \mathbf{e}_y), \qquad \boldsymbol{\delta}_h = \big((\mathbf{p} - \mathbf{e}_y)\, W_2^\top\big) \odot [\mathbf{h} &gt; 0], \qquad \frac{\partial L}{\partial W_1} = \mathbf{x}^\top \boldsymbol{\delta}_h\] <p>Each weight then takes a small step against its gradient, \(W \leftarrow W - \eta\, \partial L / \partial W\), with learning rate \(\eta = 0.1\) and the gradient averaged over a mini-batch of 100 images. In code:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">epochs</span><span class="p">):</span>
+    <span class="n">order</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="nf">permutation</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">batch</span><span class="p">):</span>
+        <span class="n">xb</span><span class="p">,</span> <span class="n">yb</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">batch</span><span class="p">]],</span> <span class="n">y</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span> <span class="o">+</span> <span class="n">batch</span><span class="p">]]</span>
+        <span class="n">h</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="nf">forward</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">xb</span><span class="p">)</span>
+        <span class="n">dz</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="n">dz</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">yb</span><span class="p">)),</span> <span class="n">yb</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># softmax + cross-entropy gradient
+</span>        <span class="n">dz</span> <span class="o">/=</span> <span class="nf">len</span><span class="p">(</span><span class="n">yb</span><span class="p">)</span>
+        <span class="n">dh</span> <span class="o">=</span> <span class="p">(</span><span class="n">dz</span> <span class="o">@</span> <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">W2</span><span class="sh">"</span><span class="p">].</span><span class="n">T</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">h</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">W2</span><span class="sh">"</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">h</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">dz</span>
+        <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">b2</span><span class="sh">"</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dz</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">W1</span><span class="sh">"</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">xb</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">dh</span>
+        <span class="n">model</span><span class="p">[</span><span class="sh">"</span><span class="s">b1</span><span class="sh">"</span><span class="p">]</span> <span class="o">-=</span> <span class="n">lr</span> <span class="o">*</span> <span class="n">dh</span><span class="p">.</span><span class="nf">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div> <p>The weights start random, drawn from a normal distribution with \(\sigma = \sqrt{2 / n_\text{in}}\) (He initialisation), which keeps the signal from fading or blowing up as it passes through ReLU units. Ten passes over the 60,000 images take 11.3 seconds on a CPU.</p> <h3 id="what-the-hidden-units-learnt">What the hidden units learnt</h3> <p>Each hidden unit has one input weight per pixel, so its 784 weights can be drawn as a 28×28 image.</p> <figure> <picture> <img src="/assets/img/ultrasonic_mnist/hidden_units.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" data-zoomable="" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> <div class="caption"> Eight hidden units picked at random. Top: each unit's 784 input weights. Bottom: the same weights minus their random starting values, which is what training added. Blue pixels push the unit on when there is ink on them, orange ones push it off. Each tile is scaled to its own largest weight. </div> <p>The top row is mostly noise, and that is a lesson in itself. A pixel that is black in every training image adds nothing to \(\partial L / \partial W_1 = \mathbf{x}^\top \boldsymbol{\delta}_h\), so its weights never move: 67 of the 784 pixels are never inked in MNIST’s training set, and their weights are exactly what the random start gave them. Elsewhere, training changed the weights by about 0.02 (root mean square), against starting values of about 0.05. The random start is still most of what you see.</p> <p><code class="language-plaintext highlighter-rouge">train.py</code> seeds its random generator, so the start can be recomputed and subtracted. What’s left in the bottom row is what was learnt: strokes, arcs and loops in different places, blue where ink should be and orange where it shouldn’t. Each unit detects one such pattern, and the output layer learns which combinations of them make a 7.</p> <h3 id="training-results">Training results</h3> <script type="text/tikz">
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=-1cm]
+\definecolor{accent}{RGB}{37,99,235}
+\definecolor{muted}{RGB}{140,140,140}
+\definecolor{quiet}{RGB}{100,100,100}
+\definecolor{gridc}{RGB}{222,222,222}
+\definecolor{diagc}{RGB}{214,216,220}
+\draw[gridc,line width=1pt] (0,5.250) -- (9.9,5.250);
+\node[anchor=east,font=\footnotesize,text=quiet] at (-0.15,5.250) {92\%};
+\draw[gridc] (0,3.750) -- (9.9,3.750);
+\node[anchor=east,font=\footnotesize,text=quiet] at (-0.15,3.750) {94\%};
+\draw[gridc] (0,2.250) -- (9.9,2.250);
+\node[anchor=east,font=\footnotesize,text=quiet] at (-0.15,2.250) {96\%};
+\draw[gridc] (0,0.750) -- (9.9,0.750);
+\node[anchor=east,font=\footnotesize,text=quiet] at (-0.15,0.750) {98\%};
+\node[font=\footnotesize,text=quiet] at (0.0,5.650) {1};
+\node[font=\footnotesize,text=quiet] at (1.1,5.650) {2};
+\node[font=\footnotesize,text=quiet] at (2.2,5.650) {3};
+\node[font=\footnotesize,text=quiet] at (3.3000000000000003,5.650) {4};
+\node[font=\footnotesize,text=quiet] at (4.4,5.650) {5};
+\node[font=\footnotesize,text=quiet] at (5.5,5.650) {6};
+\node[font=\footnotesize,text=quiet] at (6.6000000000000005,5.650) {7};
+\node[font=\footnotesize,text=quiet] at (7.700000000000001,5.650) {8};
+\node[font=\footnotesize,text=quiet] at (8.8,5.650) {9};
+\node[font=\footnotesize,text=quiet] at (9.9,5.650) {10};
+\node[font=\footnotesize,text=quiet] at (4.95,6.150) {epoch};
+\draw[muted,line width=1.5pt,line join=round] (0.0,4.661) -- (1.1,3.176) -- (2.2,2.394) -- (3.3000000000000003,1.909) -- (4.4,1.520) -- (5.5,1.214) -- (6.6000000000000005,1.009) -- (7.700000000000001,0.781) -- (8.8,0.696) -- (9.9,0.538);
+\draw[accent,line width=2pt,line join=round] (0.0,4.350) -- (1.1,3.300) -- (2.2,2.662) -- (3.3000000000000003,2.122) -- (4.4,1.868) -- (5.5,1.523) -- (6.6000000000000005,1.425) -- (7.700000000000001,1.245) -- (8.8,1.252) -- (9.9,1.095);
+\node[anchor=west,font=\small,text=quiet] at (10.1,0.538) {Train 98.3\%};
+\node[anchor=west,font=\small\bfseries,text=accent] at (10.1,1.095) {Test 97.5\%};
+\node[anchor=base west,font=\bfseries,inner xsep=0pt] at (-1.1,-1.15) {Test accuracy reaches 97.5\% in 10 epochs; train ends at 98.3\%};
+\node[anchor=base west,font=\footnotesize,text=quiet,inner xsep=0pt] at (-1.1,-0.6) {Share of images read correctly after each pass over the 60,000 training images};
+\end{tikzpicture}
+\end{document}
+</script> <p>Train accuracy is measured on the images the network learns from, and test accuracy on 10,000 it never sees. If train accuracy kept rising while test accuracy stalled, the network would be memorising its training images instead of learning digits: overfitting. Here the gap stays under one point, so this small network isn’t overfitting much yet.</p> <script type="text/tikz">
+\begin{document}
+\begin{tikzpicture}[x=0.62cm,y=-0.62cm]
+\definecolor{accent}{RGB}{37,99,235}
+\definecolor{muted}{RGB}{140,140,140}
+\definecolor{quiet}{RGB}{100,100,100}
+\definecolor{gridc}{RGB}{222,222,222}
+\definecolor{diagc}{RGB}{214,216,220}
+\node[font=\footnotesize\bfseries] at (0.5,-0.45) {0};
+\node[font=\footnotesize\bfseries] at (-0.45,0.5) {0};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (0,0) rectangle (1,1);
+\node[font=\scriptsize,text=black] at (0.5,0.5) {970};
+\filldraw[fill=white,draw=white,line width=1.5pt] (1,0) rectangle (2,1);
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (2,0) rectangle (3,1);
+\node[font=\scriptsize,text=black] at (2.5,0.5) {1};
+\filldraw[fill=white,draw=white,line width=1.5pt] (3,0) rectangle (4,1);
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (4,0) rectangle (5,1);
+\node[font=\scriptsize,text=black] at (4.5,0.5) {1};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (5,0) rectangle (6,1);
+\node[font=\scriptsize,text=black] at (5.5,0.5) {2};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (6,0) rectangle (7,1);
+\node[font=\scriptsize,text=black] at (6.5,0.5) {2};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (7,0) rectangle (8,1);
+\node[font=\scriptsize,text=black] at (7.5,0.5) {2};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (8,0) rectangle (9,1);
+\node[font=\scriptsize,text=black] at (8.5,0.5) {2};
+\filldraw[fill=white,draw=white,line width=1.5pt] (9,0) rectangle (10,1);
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,0.5) {99.0\%};
+\node[font=\footnotesize\bfseries] at (1.5,-0.45) {1};
+\node[font=\footnotesize\bfseries] at (-0.45,1.5) {1};
+\filldraw[fill=white,draw=white,line width=1.5pt] (0,1) rectangle (1,2);
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (1,1) rectangle (2,2);
+\node[font=\scriptsize,text=black] at (1.5,1.5) {1124};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (2,1) rectangle (3,2);
+\node[font=\scriptsize,text=black] at (2.5,1.5) {3};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (3,1) rectangle (4,2);
+\node[font=\scriptsize,text=black] at (3.5,1.5) {1};
+\filldraw[fill=white,draw=white,line width=1.5pt] (4,1) rectangle (5,2);
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (5,1) rectangle (6,2);
+\node[font=\scriptsize,text=black] at (5.5,1.5) {1};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (6,1) rectangle (7,2);
+\node[font=\scriptsize,text=black] at (6.5,1.5) {3};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (7,1) rectangle (8,2);
+\node[font=\scriptsize,text=black] at (7.5,1.5) {1};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (8,1) rectangle (9,2);
+\node[font=\scriptsize,text=black] at (8.5,1.5) {2};
+\filldraw[fill=white,draw=white,line width=1.5pt] (9,1) rectangle (10,2);
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,1.5) {99.0\%};
+\node[font=\footnotesize\bfseries] at (2.5,-0.45) {2};
+\node[font=\footnotesize\bfseries] at (-0.45,2.5) {2};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (0,2) rectangle (1,3);
+\node[font=\scriptsize,text=black] at (0.5,2.5) {4};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (1,2) rectangle (2,3);
+\node[font=\scriptsize,text=black] at (1.5,2.5) {2};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (2,2) rectangle (3,3);
+\node[font=\scriptsize,text=black] at (2.5,2.5) {997};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (3,2) rectangle (4,3);
+\node[font=\scriptsize,text=black] at (3.5,2.5) {3};
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (4,2) rectangle (5,3);
+\node[font=\scriptsize,text=black] at (4.5,2.5) {5};
+\filldraw[fill=white,draw=white,line width=1.5pt] (5,2) rectangle (6,3);
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (6,2) rectangle (7,3);
+\node[font=\scriptsize,text=black] at (6.5,2.5) {3};
+\filldraw[fill=accent!62!white,draw=white,line width=1.5pt] (7,2) rectangle (8,3);
+\node[font=\scriptsize,text=white] at (7.5,2.5) {7};
+\filldraw[fill=accent!87!white,draw=white,line width=1.5pt] (8,2) rectangle (9,3);
+\node[font=\scriptsize,text=white] at (8.5,2.5) {11};
+\filldraw[fill=white,draw=white,line width=1.5pt] (9,2) rectangle (10,3);
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,2.5) {96.6\%};
+\node[font=\footnotesize\bfseries] at (3.5,-0.45) {3};
+\node[font=\footnotesize\bfseries] at (-0.45,3.5) {3};
+\filldraw[fill=white,draw=white,line width=1.5pt] (0,3) rectangle (1,4);
+\filldraw[fill=white,draw=white,line width=1.5pt] (1,3) rectangle (2,4);
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (2,3) rectangle (3,4);
+\node[font=\scriptsize,text=black] at (2.5,3.5) {3};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (3,3) rectangle (4,4);
+\node[font=\scriptsize,text=black] at (3.5,3.5) {992};
+\filldraw[fill=white,draw=white,line width=1.5pt] (4,3) rectangle (5,4);
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (5,3) rectangle (6,4);
+\node[font=\scriptsize,text=black] at (5.5,3.5) {3};
+\filldraw[fill=white,draw=white,line width=1.5pt] (6,3) rectangle (7,4);
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (7,3) rectangle (8,4);
+\node[font=\scriptsize,text=black] at (7.5,3.5) {5};
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (8,3) rectangle (9,4);
+\node[font=\scriptsize,text=black] at (8.5,3.5) {5};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (9,3) rectangle (10,4);
+\node[font=\scriptsize,text=black] at (9.5,3.5) {2};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,3.5) {98.2\%};
+\node[font=\footnotesize\bfseries] at (4.5,-0.45) {4};
+\node[font=\footnotesize\bfseries] at (-0.45,4.5) {4};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (0,4) rectangle (1,5);
+\node[font=\scriptsize,text=black] at (0.5,4.5) {1};
+\filldraw[fill=white,draw=white,line width=1.5pt] (1,4) rectangle (2,5);
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (2,4) rectangle (3,5);
+\node[font=\scriptsize,text=black] at (2.5,4.5) {3};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (3,4) rectangle (4,5);
+\node[font=\scriptsize,text=black] at (3.5,4.5) {1};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (4,4) rectangle (5,5);
+\node[font=\scriptsize,text=black] at (4.5,4.5) {958};
+\filldraw[fill=white,draw=white,line width=1.5pt] (5,4) rectangle (6,5);
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (6,4) rectangle (7,5);
+\node[font=\scriptsize,text=black] at (6.5,4.5) {2};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (7,4) rectangle (8,5);
+\node[font=\scriptsize,text=black] at (7.5,4.5) {2};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (8,4) rectangle (9,5);
+\node[font=\scriptsize,text=black] at (8.5,4.5) {2};
+\filldraw[fill=accent!100!white,draw=white,line width=1.5pt] (9,4) rectangle (10,5);
+\node[font=\scriptsize,text=white] at (9.5,4.5) {13};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,4.5) {97.6\%};
+\node[font=\footnotesize\bfseries] at (5.5,-0.45) {5};
+\node[font=\footnotesize\bfseries] at (-0.45,5.5) {5};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (0,5) rectangle (1,6);
+\node[font=\scriptsize,text=black] at (0.5,5.5) {3};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (1,5) rectangle (2,6);
+\node[font=\scriptsize,text=black] at (1.5,5.5) {1};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (2,5) rectangle (3,6);
+\node[font=\scriptsize,text=black] at (2.5,5.5) {1};
+\filldraw[fill=accent!68!white,draw=white,line width=1.5pt] (3,5) rectangle (4,6);
+\node[font=\scriptsize,text=white] at (3.5,5.5) {8};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (4,5) rectangle (5,6);
+\node[font=\scriptsize,text=black] at (4.5,5.5) {1};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (5,5) rectangle (6,6);
+\node[font=\scriptsize,text=black] at (5.5,5.5) {863};
+\filldraw[fill=accent!62!white,draw=white,line width=1.5pt] (6,5) rectangle (7,6);
+\node[font=\scriptsize,text=white] at (6.5,5.5) {7};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (7,5) rectangle (8,6);
+\node[font=\scriptsize,text=black] at (7.5,5.5) {1};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (8,5) rectangle (9,6);
+\node[font=\scriptsize,text=black] at (8.5,5.5) {4};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (9,5) rectangle (10,6);
+\node[font=\scriptsize,text=black] at (9.5,5.5) {3};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,5.5) {96.7\%};
+\node[font=\footnotesize\bfseries] at (6.5,-0.45) {6};
+\node[font=\footnotesize\bfseries] at (-0.45,6.5) {6};
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (0,6) rectangle (1,7);
+\node[font=\scriptsize,text=black] at (0.5,6.5) {5};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (1,6) rectangle (2,7);
+\node[font=\scriptsize,text=black] at (1.5,6.5) {3};
+\filldraw[fill=white,draw=white,line width=1.5pt] (2,6) rectangle (3,7);
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (3,6) rectangle (4,7);
+\node[font=\scriptsize,text=black] at (3.5,6.5) {1};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (4,6) rectangle (5,7);
+\node[font=\scriptsize,text=black] at (4.5,6.5) {4};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (5,6) rectangle (6,7);
+\node[font=\scriptsize,text=black] at (5.5,6.5) {3};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (6,6) rectangle (7,7);
+\node[font=\scriptsize,text=black] at (6.5,6.5) {940};
+\filldraw[fill=white,draw=white,line width=1.5pt] (7,6) rectangle (8,7);
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (8,6) rectangle (9,7);
+\node[font=\scriptsize,text=black] at (8.5,6.5) {2};
+\filldraw[fill=white,draw=white,line width=1.5pt] (9,6) rectangle (10,7);
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,6.5) {98.1\%};
+\node[font=\footnotesize\bfseries] at (7.5,-0.45) {7};
+\node[font=\footnotesize\bfseries] at (-0.45,7.5) {7};
+\filldraw[fill=white,draw=white,line width=1.5pt] (0,7) rectangle (1,8);
+\filldraw[fill=accent!75!white,draw=white,line width=1.5pt] (1,7) rectangle (2,8);
+\node[font=\scriptsize,text=white] at (1.5,7.5) {9};
+\filldraw[fill=accent!68!white,draw=white,line width=1.5pt] (2,7) rectangle (3,8);
+\node[font=\scriptsize,text=white] at (2.5,7.5) {8};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (3,7) rectangle (4,8);
+\node[font=\scriptsize,text=black] at (3.5,7.5) {4};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (4,7) rectangle (5,8);
+\node[font=\scriptsize,text=black] at (4.5,7.5) {1};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (5,7) rectangle (6,8);
+\node[font=\scriptsize,text=black] at (5.5,7.5) {1};
+\filldraw[fill=white,draw=white,line width=1.5pt] (6,7) rectangle (7,8);
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (7,7) rectangle (8,8);
+\node[font=\scriptsize,text=black] at (7.5,7.5) {991};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (8,7) rectangle (9,8);
+\node[font=\scriptsize,text=black] at (8.5,7.5) {1};
+\filldraw[fill=accent!100!white,draw=white,line width=1.5pt] (9,7) rectangle (10,8);
+\node[font=\scriptsize,text=white] at (9.5,7.5) {13};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,7.5) {96.4\%};
+\node[font=\footnotesize\bfseries] at (8.5,-0.45) {8};
+\node[font=\footnotesize\bfseries] at (-0.45,8.5) {8};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (0,8) rectangle (1,9);
+\node[font=\scriptsize,text=black] at (0.5,8.5) {4};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (1,8) rectangle (2,9);
+\node[font=\scriptsize,text=black] at (1.5,8.5) {1};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (2,8) rectangle (3,9);
+\node[font=\scriptsize,text=black] at (2.5,8.5) {1};
+\filldraw[fill=accent!56!white,draw=white,line width=1.5pt] (3,8) rectangle (4,9);
+\node[font=\scriptsize,text=white] at (3.5,8.5) {6};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (4,8) rectangle (5,9);
+\node[font=\scriptsize,text=black] at (4.5,8.5) {4};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (5,8) rectangle (6,9);
+\node[font=\scriptsize,text=black] at (5.5,8.5) {4};
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (6,8) rectangle (7,9);
+\node[font=\scriptsize,text=black] at (6.5,8.5) {5};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (7,8) rectangle (8,9);
+\node[font=\scriptsize,text=black] at (7.5,8.5) {4};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (8,8) rectangle (9,9);
+\node[font=\scriptsize,text=black] at (8.5,8.5) {941};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (9,8) rectangle (10,9);
+\node[font=\scriptsize,text=black] at (9.5,8.5) {4};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,8.5) {96.6\%};
+\node[font=\footnotesize\bfseries] at (9.5,-0.45) {9};
+\node[font=\footnotesize\bfseries] at (-0.45,9.5) {9};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (0,9) rectangle (1,10);
+\node[font=\scriptsize,text=black] at (0.5,9.5) {3};
+\filldraw[fill=accent!50!white,draw=white,line width=1.5pt] (1,9) rectangle (2,10);
+\node[font=\scriptsize,text=black] at (1.5,9.5) {5};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (2,9) rectangle (3,10);
+\node[font=\scriptsize,text=black] at (2.5,9.5) {1};
+\filldraw[fill=accent!43!white,draw=white,line width=1.5pt] (3,9) rectangle (4,10);
+\node[font=\scriptsize,text=black] at (3.5,9.5) {4};
+\filldraw[fill=accent!81!white,draw=white,line width=1.5pt] (4,9) rectangle (5,10);
+\node[font=\scriptsize,text=white] at (4.5,9.5) {10};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (5,9) rectangle (6,10);
+\node[font=\scriptsize,text=black] at (5.5,9.5) {2};
+\filldraw[fill=accent!24!white,draw=white,line width=1.5pt] (6,9) rectangle (7,10);
+\node[font=\scriptsize,text=black] at (6.5,9.5) {1};
+\filldraw[fill=accent!37!white,draw=white,line width=1.5pt] (7,9) rectangle (8,10);
+\node[font=\scriptsize,text=black] at (7.5,9.5) {3};
+\filldraw[fill=accent!31!white,draw=white,line width=1.5pt] (8,9) rectangle (9,10);
+\node[font=\scriptsize,text=black] at (8.5,9.5) {2};
+\filldraw[fill=diagc,draw=white,line width=1.5pt] (9,9) rectangle (10,10);
+\node[font=\scriptsize,text=black] at (9.5,9.5) {978};
+\node[anchor=west,font=\footnotesize,text=quiet] at (10.15,9.5) {96.9\%};
+\node[anchor=west,font=\footnotesize\bfseries] at (10.15,-0.45) {correct};
+\node[font=\footnotesize,text=quiet] at (5,-1.1) {read as};
+\node[font=\footnotesize,text=quiet,rotate=90] at (-1.15,5) {true label};
+\node[anchor=base west,font=\bfseries,inner xsep=0pt] at (-1.4,-2.55) {246 of 10,000 test digits misread; 4 and 7 read as 9 lead, 13 each};
+\node[anchor=base west,font=\footnotesize,text=quiet,inner xsep=0pt] at (-1.4,-1.95) {Grey: read correctly $\cdot$ blue: misread, darker is more often $\cdot$ blank: never};
+\end{tikzpicture}
+\end{document}
+</script> <p>The confusion matrix shows which mistakes it makes. Rows are the true digit and columns what the network read, so the diagonal holds the correct reads and every other cell is an error. 246 of the 10,000 test digits were misread. The biggest cells are pairs that share most of their strokes: 4 and 7 read as 9, 13 times each, 2 read as 8 (11) and 9 read as 4 (10). 0 and 1 are read best, 99.0% each, and 7 worst, 96.4%.</p> <h3 id="train-your-own-symbol">Train your own symbol</h3> <p>The page only reads; it never trains. To teach the network a new symbol, a letter or your own way of writing a digit:</p> <ol> <li>Draw at least 30 images of each symbol, varying size, slant and position. Any size and any format Pillow reads will do, dark on a light background or light on black.</li> <li>Put them in a folder named after the label: <div class="language-text highlighter-rouge"> <div class="highlight"><pre class="highlight"><code>data/custom/
+├── A/
+│   ├── 001.png
+│   └── ...
+├── plus/
+│   └── ...
+└── 7/          your own 7s, added to MNIST's
+</code></pre></div> </div> </li> <li>Run <code class="language-plaintext highlighter-rouge">python3 train.py</code> (it needs <code class="language-plaintext highlighter-rouge">pip install pillow</code> for this) and restart <code class="language-plaintext highlighter-rouge">server.py</code>.</li> </ol> <p><code class="language-plaintext highlighter-rouge">train.py</code> crops each image to its symbol, scales it into a 20×20 box and centres it in 28×28: the MNIST recipe again. Labels that aren’t digits become extra outputs after 0–9. Every fifth image of each label is held out for testing. A few dozen images would be drowned out by MNIST’s ~6,000 per digit, so each label is oversampled to 1,000 copies, each shifted by up to 2 pixels:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">np</span><span class="p">.</span><span class="nf">unique</span><span class="p">(</span><span class="n">cy</span><span class="p">[</span><span class="o">~</span><span class="n">ctest</span><span class="p">]):</span>
+    <span class="n">pick</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">flatnonzero</span><span class="p">((</span><span class="n">cy</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">ctest</span><span class="p">),</span> <span class="mi">1000</span><span class="p">)</span>
+    <span class="n">shifts</span> <span class="o">=</span> <span class="n">rng</span><span class="p">.</span><span class="nf">integers</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">copies</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">roll</span><span class="p">(</span><span class="n">cx</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">s</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)).</span><span class="nf">ravel</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">pick</span><span class="p">,</span> <span class="n">shifts</span><span class="p">)]</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">copies</span><span class="p">]),</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">full</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">c</span><span class="p">)])</span>
+</code></pre></div></div> <p>A symbol unlike any digit, such as + or X, learns well from a few dozen images. One that looks like a digit (O and 0, l and 1, S and 5) gets confused with it, and the confusion matrix on the Model tab shows how often. For a whole alphabet, a dataset such as EMNIST Letters beats drawing hundreds of samples by hand.</p> <h2 id="teaching-with-it">Teaching with it</h2> <p>Electronics and machine learning are usually taught in separate rooms. Here one depends on the other: the network can only be as good as the readings, and the readings only matter because something reads them.</p> <h3 id="the-practical-side">The practical side</h3> <p>Each part gives students something to build, break and measure:</p> <table> <thead> <tr> <th>Part</th> <th>What it teaches</th> <th>Something to try</th> </tr> </thead> <tbody> <tr> <td>HC-SR04</td> <td>Time of flight, speed of sound</td> <td>Measure a known distance and solve for the speed of sound</td> </tr> <tr> <td>Echo divider</td> <td>Logic levels, voltage dividers</td> <td>Measure ECHO before and after the divider with a multimeter or a scope</td> </tr> <tr> <td>Two sensors</td> <td>Crosstalk, timing budgets</td> <td>Set <code class="language-plaintext highlighter-rouge">PING_GAP_MS</code> to 0 and look for one sensor hearing the other’s ping</td> </tr> <tr> <td>WiFi and UDP</td> <td>IP addresses, ports, firewalls, lost packets</td> <td>Watch the readings per second in the page’s top bar while carrying the board away from the router</td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">server.py</code></td> <td>Median and low-pass filters, lag</td> <td>Draw the same digit with <code class="language-plaintext highlighter-rouge">low_pass</code> at 1.0, 0.5 and 0.2</td> </tr> <tr> <td>The page</td> <td>Sampling, interpolation, rasterisation</td> <td>Draw a digit half the size of the dashed box, then again with <code class="language-plaintext highlighter-rouge">fit_box = true</code> </td> </tr> <tr> <td><code class="language-plaintext highlighter-rouge">train.py</code></td> <td>Datasets, backpropagation, overfitting</td> <td>Change <code class="language-plaintext highlighter-rouge">hidden</code> from 256 to 16 or 1024 and compare accuracy and training time</td> </tr> </tbody> </table> <h3 id="the-theoretical-side">The theoretical side</h3> <p>The same parts lead to questions that can be worked out on paper:</p> <ul> <li> <strong>Measurement error has many sources.</strong> The speed of sound changes with temperature, roughly \(v \approx 331.3 + 0.606\,T\) m/s with \(T\) in °C. With the firmware’s 343 m/s (20 °C) in a 30 °C room, an object at 203.5 mm reads as 200 mm.</li> <li> <strong>A distance is not a coordinate.</strong> Each sensor reports the distance to the object, not its position along the sensor’s axis. An object off the axis by an angle \(\theta\) reads \(x / \cos\theta\): at the edge of a 15° beam (\(\theta = 7.5^\circ\)) that is 0.9% long, about 1.7 mm at 200 mm. It’s the same geometry behind every range sensor.</li> <li> <strong>Filters trade noise for lag, and the trade can be computed.</strong> After a sudden move, an exponential average with weight \(\alpha\) still lacks \((1-\alpha)^n\) of it after \(n\) readings.</li> <li> <strong>Resolution has limits at both ends.</strong> The sensors give a point about every 60 ms, and the network sees the 10 cm area as 28 pixels of 3.6 mm. A digit drawn too fast has few points; one drawn too small covers a handful of pixels.</li> <li> <strong>Training data defines what a model can do.</strong> MNIST is pen on paper. Air-drawn trails are smoother, have a constant width and shake in their own way. Making the input look like MNIST (the same box, the same stroke width, the centre of mass in the middle) is most of what makes the network work here. When it fails, asking how the input differs from the training set usually finds the reason.</li> <li> <strong>Backpropagation is the chain rule.</strong> With a dozen lines of NumPy there is no framework between the student and the math, and each gradient in the code can be checked against a finite difference.</li> </ul> <h3 id="exercises">Exercises</h3> <ol> <li>Measure the speed of sound in the room with one sensor and a ruler, and compare it with \(331.3 + 0.606\,T\).</li> <li>Write the same digit with the smoothing off (<code class="language-plaintext highlighter-rouge">median_of = 1</code>, <code class="language-plaintext highlighter-rouge">low_pass = 1.0</code>) and on, and describe the difference in the trail.</li> <li>Check one gradient in <code class="language-plaintext highlighter-rouge">train.py</code> with a finite difference: nudge one weight by \(10^{-4}\), and compare the change in the loss with the gradient times \(10^{-4}\).</li> <li>Train with 16, 64, 256 and 1024 hidden units, and plot test accuracy and training time against the number of parameters.</li> <li>Teach the network a + sign from 30 drawings and read its row of the confusion matrix.</li> <li>Replace the hidden layer with a small convolutional network and compare. An MLP treats every pixel position on its own; a convolution reuses the same small filters everywhere.</li> </ol> <h2 id="what-it-cannot-do-yet">What it cannot do yet</h2> <ul> <li> <strong>The rig isn’t finished.</strong> The board reads both sensors and streams them to the page, but on my bench the sensor measuring y gets no echo yet, so the area isn’t calibrated. The air-drawn digits in this post come from a script that sends traced points as UDP packets, the same way the ESP32 does.</li> <li> <strong>The area is small.</strong> Both beams have to see the object, which leaves a 10 cm square 15–25 cm from the sensors. A thin object, such as a pen tip or a finger, works best.</li> <li> <strong>It’s slow.</strong> About 16 points a second, so a digit written in under a second has too few of them.</li> <li> <strong>It measures distances, not coordinates.</strong> The error is small in the middle of the area and grows towards its edges.</li> </ul> <h2 id="try-it-at-my-repo">Try it at my <a href="https://github.com/lesaf92/ultrasonic_mnist" rel="external nofollow noopener" target="_blank"><strong>repo</strong></a> </h2> <p>It needs Python 3.11+ and NumPy:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 train.py      <span class="c"># downloads MNIST to data/, trains the network, writes model.npz</span>
+python3 server.py     <span class="c"># then open http://127.0.0.1:8000</span>
+</code></pre></div></div> <p>The Mouse tab works without any hardware: draw a digit that fills the dashed box and wait four seconds. For the sensors, copy <code class="language-plaintext highlighter-rouge">firmware/config.example.h</code> to <code class="language-plaintext highlighter-rouge">firmware/config.h</code>, fill in your WiFi network and your computer’s address, flash it to an ESP32-S3 and open the Ultrasonic tab. The README has the wiring and the flashing steps.</p> </div> </article> <br> <hr> <br> <ul class="list-disc pl-8"></ul> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2026/paper-stats/">Measuring how long robotics journals take to review papers</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2025/a-tribute-to-my-dota2-team/">Um tributo ao meu time de Dota 2</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2025/hacking-my-coffee-grinder/">Hacking my coffee grinder</a> </li> <div id="giscus_thread" style="max-width: 930px; margin: 0 auto;"> <br> <script>
+      let giscusTheme = determineComputedTheme();
+      let giscusAttributes = {
+        src: 'https://giscus.app/client.js',
+        'data-repo': 'lesaf92/lesaf92.github.io',
+        'data-repo-id': 'R_kgDOPeRCGQ',
+        'data-category': 'Comments',
+        'data-category-id': 'DIC_kwDOPeRCGc4Cu_YK',
+        'data-mapping': 'title',
+        'data-strict': '1',
+        'data-reactions-enabled': '1',
+        'data-emit-metadata': '0',
+        'data-input-position': 'bottom',
+        'data-theme': giscusTheme,
+        'data-lang': 'en',
+        crossorigin: 'anonymous',
+        async: '',
+      };
+
+      let giscusScript = document.createElement('script');
+      Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+      document.getElementById('giscus_thread').appendChild(giscusScript);
+    </script> <noscript>Please enable JavaScript to view the <a href="http://giscus.app/?ref_noscript" rel="external nofollow noopener" target="_blank">comments powered by giscus.</a> </noscript> </div> </div> </div> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2026 Luiz Eugenio S. Araujo Filho. Powered by <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a>. Last updated: November 01, 2026. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?a0db7e5d5c70cc3252b3138b0c91dcaf" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/mermaid@10.7.0/dist/mermaid.min.js" integrity="sha256-TtLOdUA8mstPoO6sGvHIGx2ceXrrX4KgIItO06XOn8A=" crossorigin="anonymous"></script> <script defer src="/assets/js/mermaid-setup.js?38ca0a0126f7328d2d9a46bad640931f" type="text/javascript"></script> <script defer src="/assets/js/tikzjax.min.js?32ae771474611c1ece3b56767307fd31" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script defer src="/assets/js/bootstrap-toc.min.js?c82ff4de8b0955d6ff14f5b05eed7eb6"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?c8a01c11a92744d44b093fc3bda915df" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> <script type="module" src="/assets/js/search/ninja-keys.min.js?a3446f084dcaecc5f75aa1757d087dcf"></script> <ninja-keys hidebreadcrumbs noautoloadmdicons placeholder="Type to start searching"></ninja-keys> <script src="/assets/js/search-setup.js?6c304f7b1992d4b60f7a07956e52f04a"></script> <script src="/assets/js/search-data.js"></script> <script src="/assets/js/shortcut-key.js?6f508d74becd347268a7f822bca7309d"></script> </body> </html>

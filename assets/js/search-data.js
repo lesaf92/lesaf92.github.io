@@ -51,7 +51,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/teaching/";
               },
-            },{id: "post-measuring-how-long-robotics-journals-take-to-review-papers",
+            },{id: "post-drawing-digits-in-the-air-with-two-ultrasonic-sensors",
+        
+          title: "Drawing digits in the air with two ultrasonic sensors",
+        
+        description: "Two HC-SR04 sensors, an ESP32 and a small network written in NumPy turn a pen moving through the air into a digit, and each step is small enough to teach.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/ultrasonic-mnist/";
+          
+        },
+      },{id: "post-measuring-how-long-robotics-journals-take-to-review-papers",
         
           title: "Measuring how long robotics journals take to review papers",
         
