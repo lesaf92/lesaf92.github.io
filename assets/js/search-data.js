@@ -236,6 +236,11 @@ ninja.data = [{
           description: "Scripts, scripts everywhere.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/scripts_center/";
+            },},{id: "projects-ultrasonic-mnist",
+          title: 'Ultrasonic MNIST',
+          description: "Write a digit in the air between two ultrasonic sensors and a neural network trained from scratch reads it.",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/ultrasonic_mnist/";
             },},{
         id: 'social-email',
         title: 'email',
