@@ -13,7 +13,7 @@ As a control systems enthusiast, I wanted to build a platform where users could 
 
 This led me to create **ICCC** (International Cupadi Control Competition), a web application built to solve this exact problem.
 
-The tool allows a user to study the mathematical model of a plant—such as the nonlinear equations of a 2D Inverted Pendulum on a cart—and directly write their own control law in JavaScript syntax (e.g., LQR or Pole Placement). The app then instantly simulates the system's dynamics, visualizes the real-time response, and grades the performance, allowing users to submit their scores to a global leaderboard.
+The tool allows a user to study the mathematical model of a plant, such as the nonlinear equations of a 2D Inverted Pendulum on a cart, and directly write their own control law in JavaScript syntax (e.g., LQR or Pole Placement). The app then instantly simulates the system's dynamics, visualizes the real-time response, and grades the performance, allowing users to submit their scores to a global leaderboard.
 
 {% include figure.liquid loading="eager" path="assets/img/ICCC_screenshot.png" title="screenshot" class="img-fluid rounded z-depth-1" zoomable=true %}
 
@@ -38,5 +38,5 @@ This project was a fantastic exercise in combining mathematical modeling with in
 ### Running the app
 - Link to the app: [**iccc.lesaf.cc**](https://iccc.lesaf.cc)
 - Link to the repo: [**github.com**](https://github.com/lesaf92/iccc)
-
+- Link to the rules: <a href="https://lesaf92.github.io/assets/pdf/iccc_rules.pdf" target="_blank" rel="noopener noreferrer" class="float-center" ><i class="fa-solid fa-file-pdf"></i></a>
 ---
