@@ -228,7 +228,7 @@ ninja.data = [{
               window.location.href = "/projects/dota2_tournament_sim/";
             },},{id: "projects-iccc",
           title: 'ICCC',
-          description: "An interactive web application for simulating and designing custom control laws for dynamic dynamic systems, featuring a real-time 2D inverted pendulum.",
+          description: "An interactive web application for simulating and designing custom control laws for dynamic systems, featuring an inverted pendulum, an acrobot, 2D and 3D ballbots, a rocket lander, a quadcopter and a flying inverted pendulum.",
           section: "Projects",handler: () => {
               window.location.href = "/projects/iccc/";
             },},{id: "projects-scripts-center",
